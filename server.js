@@ -2,8 +2,15 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs').promises;
 const cors = require('cors');
-const puppeteer = require('puppeteer-core');
-const chromium = require('chrome-aws-lambda');
+let puppeteer;
+let chromium;
+
+try {
+    puppeteer = require('puppeteer-core');
+    chromium = require('chrome-aws-lambda');
+} catch (err) {
+    puppeteer = require('puppeteer');
+}
 const { PDFDocument } = require('pdf-lib');
 const sharp = require('sharp');
 
@@ -51,14 +58,49 @@ app.get('/generate-pdf', async (req, res) => {
             if (err.code !== 'EEXIST') throw err;
         }
 
-        // Launch Puppeteer
-        const browser = await puppeteer.launch({
-            args: chromium.args,
-            defaultViewport: chromium.defaultViewport,
-            executablePath: await chromium.executablePath,
-            headless: chromium.headless,
-            ignoreHTTPSErrors: true,
-        });
+        // Launch Puppeteer with proper executable path handling
+        let browser;
+        
+        if (chromium) {
+            try {
+                // For Railway/serverless environments with chrome-aws-lambda
+                console.log('Attempting to launch with chrome-aws-lambda...');
+                browser = await puppeteer.launch({
+                    args: chromium.args,
+                    defaultViewport: chromium.defaultViewport,
+                    executablePath: await chromium.executablePath,
+                    headless: chromium.headless,
+                    ignoreHTTPSErrors: true,
+                });
+                console.log('Successfully launched with chrome-aws-lambda');
+            } catch (error) {
+                console.log('Chrome AWS Lambda failed:', error.message);
+                throw error;
+            }
+        } else {
+            try {
+                // For local development with full puppeteer
+                console.log('Attempting to launch with local Puppeteer...');
+                browser = await puppeteer.launch({
+                    headless: 'new',
+                    args: [
+                        '--no-sandbox',
+                        '--disable-setuid-sandbox',
+                        '--disable-dev-shm-usage',
+                        '--disable-accelerated-2d-canvas',
+                        '--no-first-run',
+                        '--no-zygote',
+                        '--single-process',
+                        '--disable-gpu'
+                    ],
+                    ignoreHTTPSErrors: true,
+                });
+                console.log('Successfully launched with local Puppeteer');
+            } catch (error) {
+                console.log('Local Puppeteer failed:', error.message);
+                throw error;
+            }
+        }
 
         const page = await browser.newPage();
         
