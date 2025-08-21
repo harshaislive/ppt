@@ -255,6 +255,9 @@
             <button class="btn btn-primary" onclick="generatePDF()">
                 Generate & Download PDF
             </button>
+            <button class="btn btn-secondary" onclick="openPrintPreview()">
+                Print-to-PDF Method
+            </button>
             <button class="btn btn-secondary" onclick="previewSlides()">
                 Preview Slides
             </button>
@@ -351,6 +354,11 @@
                 button.style.opacity = '1';
                 button.style.cursor = 'pointer';
             }
+        }
+
+        function openPrintPreview() {
+            // Open the print-to-PDF page in a new tab
+            window.open('/generate-pdf-simple', '_blank');
         }
 
         function previewSlides() {
