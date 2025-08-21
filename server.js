@@ -30,13 +30,13 @@ app.get('/generate-pdf', async (req, res) => {
             .filter(file => file.startsWith('slide') && file.endsWith('.html'))
             .filter(file => !file.includes('16_remove'))
             .sort((a, b) => {
-                const numA = a.replace('slide', '').replace('.html', '');
-                const numB = b.replace('slide', '').replace('.html', '');
+                const getSlideNumber = (filename) => {
+                    const num = filename.replace('slide', '').replace('.html', '');
+                    if (num === '18a') return 18.1; // Place 18a right after 18
+                    return parseInt(num);
+                };
                 
-                if (numA === '18a') return 18.5;
-                if (numB === '18a') return -18.5;
-                
-                return parseInt(numA) - parseInt(numB);
+                return getSlideNumber(a) - getSlideNumber(b);
             });
 
         // Create a comprehensive PDF-ready page that preserves desktop browser appearance
@@ -313,13 +313,13 @@ app.get('/preview/:slideNumber', async (req, res) => {
             .filter(file => file.startsWith('slide') && file.endsWith('.html'))
             .filter(file => !file.includes('16_remove'))
             .sort((a, b) => {
-                const numA = a.replace('slide', '').replace('.html', '');
-                const numB = b.replace('slide', '').replace('.html', '');
+                const getSlideNumber = (filename) => {
+                    const num = filename.replace('slide', '').replace('.html', '');
+                    if (num === '18a') return 18.1; // Place 18a right after 18
+                    return parseInt(num);
+                };
                 
-                if (numA === '18a') return 18.5;
-                if (numB === '18a') return -18.5;
-                
-                return parseInt(numA) - parseInt(numB);
+                return getSlideNumber(a) - getSlideNumber(b);
             });
         
         const slideIndex = parseInt(slideNumber) - 1;
