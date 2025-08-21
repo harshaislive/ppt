@@ -91,7 +91,7 @@ app.get('/generate-pdf', async (req, res) => {
                 });
                 
                 // Wait a bit more for fonts and images to load
-                await page.waitForTimeout(2000);
+                await new Promise(resolve => setTimeout(resolve, 2000));
                 
                 const screenshotPath = path.join(screenshotsDir, `slide_${i + 1}.png`);
                 
