@@ -39,7 +39,7 @@ app.get('/generate-pdf', async (req, res) => {
                 return parseInt(numA) - parseInt(numB);
             });
 
-        // Create a comprehensive PDF-ready page
+        // Create a comprehensive PDF-ready page that preserves desktop browser appearance
         const pdfHtml = `
 <!DOCTYPE html>
 <html>
@@ -47,8 +47,9 @@ app.get('/generate-pdf', async (req, res) => {
     <meta charset="UTF-8">
     <title>AI Green Fund - Complete Presentation</title>
     <style>
+        /* Desktop browser dimensions for PDF - 1920x1080 */
         @page {
-            size: A4 landscape;
+            size: 1920px 1080px;
             margin: 0;
         }
         
@@ -56,6 +57,7 @@ app.get('/generate-pdf', async (req, res) => {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
+            width: 1920px;
         }
         
         .pdf-header {
@@ -63,7 +65,6 @@ app.get('/generate-pdf', async (req, res) => {
             color: white;
             padding: 20px;
             text-align: center;
-            print: none;
         }
         
         .instructions {
@@ -73,7 +74,6 @@ app.get('/generate-pdf', async (req, res) => {
             padding: 20px;
             margin: 20px;
             text-align: center;
-            print: none;
         }
         
         .print-btn {
@@ -91,13 +91,16 @@ app.get('/generate-pdf', async (req, res) => {
             background: #0052a3;
         }
         
+        /* Each slide container matches desktop browser viewport exactly */
         .slide-container {
             page-break-after: always;
             page-break-inside: avoid;
-            width: 100vw;
-            height: 100vh;
+            width: 1920px;
+            height: 1080px;
             position: relative;
             overflow: hidden;
+            display: block;
+            background: white;
         }
         
         .slide-container:last-child {
@@ -105,10 +108,12 @@ app.get('/generate-pdf', async (req, res) => {
         }
         
         .slide-frame {
-            width: 100%;
-            height: 100%;
+            width: 1920px;
+            height: 1080px;
             border: none;
             display: block;
+            transform: scale(1);
+            transform-origin: top left;
         }
         
         .slide-number {
@@ -121,29 +126,8 @@ app.get('/generate-pdf', async (req, res) => {
             border-radius: 3px;
             font-size: 14px;
             z-index: 1000;
-            print: none;
         }
         
-        @media print {
-            .pdf-header,
-            .instructions,
-            .slide-number { 
-                display: none !important; 
-            }
-            
-            .slide-container {
-                margin: 0;
-                width: 100%;
-                height: 100vh;
-            }
-            
-            .slide-frame {
-                width: 100%;
-                height: 100%;
-            }
-        }
-        
-        /* Include critical CSS for slides */
         .loading-message {
             position: fixed;
             top: 50%;
@@ -154,6 +138,64 @@ app.get('/generate-pdf', async (req, res) => {
             border-radius: 8px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             z-index: 9999;
+        }
+        
+        /* Print styles to preserve desktop appearance */
+        @media print {
+            .pdf-header,
+            .instructions,
+            .slide-number { 
+                display: none !important; 
+            }
+            
+            body {
+                width: 1920px;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .slide-container {
+                margin: 0;
+                padding: 0;
+                width: 1920px;
+                height: 1080px;
+                page-break-after: always;
+                page-break-inside: avoid;
+                display: block;
+            }
+            
+            .slide-frame {
+                width: 1920px;
+                height: 1080px;
+                border: none;
+                margin: 0;
+                padding: 0;
+                transform: scale(1);
+                display: block;
+            }
+            
+            .loading-message {
+                display: none !important;
+            }
+        }
+        
+        /* Screen styles for preview */
+        @media screen {
+            .slide-container {
+                margin: 20px auto;
+                border: 2px solid #ccc;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+                transform: scale(0.5);
+                transform-origin: center top;
+            }
+            
+            body {
+                width: auto;
+                background: #f5f5f5;
+                padding: 20px;
+            }
         }
     </style>
 </head>
@@ -169,19 +211,22 @@ app.get('/generate-pdf', async (req, res) => {
         <button class="print-btn" onclick="window.print()">🖨️ Print to PDF</button>
         
         <p><strong>Step 2:</strong> In the print dialog:</p>
-        <ul style="text-align: left; max-width: 500px; margin: 0 auto;">
+        <ul style="text-align: left; max-width: 600px; margin: 0 auto;">
             <li>Select <strong>"Save as PDF"</strong> as destination</li>
             <li>Choose <strong>"More settings"</strong></li>
-            <li>Set paper size to <strong>"A4"</strong></li>
-            <li>Set layout to <strong>"Landscape"</strong></li>
+            <li><strong>IMPORTANT:</strong> Set paper size to <strong>"Custom"</strong></li>
+            <li>Enter dimensions: <strong>Width: 1920px, Height: 1080px</strong></li>
+            <li>Or select <strong>"Fit to page"</strong> if custom size not available</li>
+            <li>Set margins to <strong>"None"</strong></li>
             <li>Ensure <strong>"Background graphics"</strong> is enabled</li>
-            <li>Set margins to <strong>"None"</strong> or <strong>"Minimum"</strong></li>
         </ul>
         
         <p><strong>Step 3:</strong> Click <strong>"Save"</strong> to download your PDF!</p>
         
         <div style="margin-top: 20px; font-size: 14px; color: #666;">
-            <p><strong>Note:</strong> Wait for all slides to load before printing (about 10-15 seconds)</p>
+            <p><strong>📏 Desktop View:</strong> Each slide will appear exactly as it looks in full desktop browser (1920x1080)</p>
+            <p><strong>⏳ Loading:</strong> Wait for all slides to load before printing (about 10-15 seconds)</p>
+            <p><strong>🖥️ Preview:</strong> On screen, slides are scaled down 50% for easier viewing, but PDF will be full size</p>
         </div>
     </div>
     
