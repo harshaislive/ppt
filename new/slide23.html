@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beforest - Advisors & Collaborations</title>
+    <style>
+        @font-face {
+            font-family: 'ABC Arizona Flare';
+            src: url('fonts/ABCArizonaFlare-Regular.woff2') format('woff2');
+            font-weight: normal;
+        }
+        @font-face {
+            font-family: 'ABC Arizona Flare Light';
+            src: url('fonts/ABCArizonaFlare-Light.woff2') format('woff2');
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: 'ABC Arizona Sans';
+            src: url('fonts/ABCArizonaFlareSans-Regular.woff2') format('woff2');
+        }
+    </style>
+</head>
+<body style="
+    margin: 0;
+    padding: 0;
+    font-family: 'ABC Arizona Sans', sans-serif;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background: linear-gradient(135deg, #344736 0%, #415c43 100%);
+    color: #fdfbf7;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+">
+    <!-- Background Pattern -->
+    <div style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.04;
+        background-image: 
+            radial-gradient(#b8dc99 1px, transparent 1px),
+            radial-gradient(#fdfbf7 1px, transparent 1px);
+        background-size: 50px 50px, 35px 35px;
+        background-position: 0 0, 25px 25px;
+        z-index: 1;
+    "></div>
+    
+    <!-- Content Container -->
+    <div style="
+        position: relative;
+        z-index: 10;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 24px;
+    ">
+        <!-- Header -->
+        <header style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        ">
+            <div></div>
+            <div style="
+                font-family: 'ABC Arizona Flare Light', serif;
+                font-size: 14px;
+                font-weight: 300;
+                color: #fdfbf7;
+                opacity: 0.9;
+            ">
+                Investment Note
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <main style="
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        ">
+            <!-- Section Title -->
+            <h1 style="
+                font-family: 'ABC Arizona Flare', serif;
+                font-size: 28px;
+                font-weight: normal;
+                text-transform: uppercase;
+                color: #fdfbf7;
+                text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+                text-align: center;
+                margin-bottom: 40px;
+                letter-spacing: 2px;
+            ">
+                ADVISORS & COLLABORATIONS
+            </h1>
+            
+            <!-- Advisors Container -->
+            <div style="
+                display: flex;
+                justify-content: space-between;
+                gap: 24px;
+                width: 100%;
+            ">
+                <!-- Shekhar Kolipaka -->
+                <div style="
+                    flex: 0 0 31%;
+                    background: rgba(255, 255, 255, 0.05);
+                    border-radius: 12px;
+                    padding: 24px;
+                    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    backdrop-filter: blur(5px);
+                    transition: transform 0.3s ease;
+                " onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="
+                        width: 80px;
+                        height: 80px;
+                        border-radius: 50%;
+                        overflow: hidden;
+                        margin-bottom: 16px;
+                        border: 2px solid #b8dc99;
+                    ">
+                        <img src="images/slide_30a.webp" alt="Shekhar Kolipaka" style="
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        ">
+                    </div>
+                    <div style="
+                        font-family: 'ABC Arizona Flare Light', serif;
+                        font-size: 11px;
+                        text-transform: uppercase;
+                        color: #b8dc99;
+                        margin-bottom: 8px;
+                        letter-spacing: 1px;
+                    ">
+                        CONSERVATIONIST
+                    </div>
+                    <h2 style="
+                        font-family: 'ABC Arizona Flare', serif;
+                        font-size: 16px;
+                        font-weight: normal;
+                        margin: 0 0 12px 0;
+                        color: #fdfbf7;
+                        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+                        line-height: 1.2;
+                    ">
+                        SHEKHAR KOLIPAKA
+                    </h2>
+                    <p style="
+                        font-family: 'ABC Arizona Sans', sans-serif;
+                        font-size: 11px;
+                        line-height: 1.5;
+                        color: #fdfbf7;
+                        margin: 0;
+                        opacity: 0.9;
+                    ">
+                        A pioneer in <span style="color: #b8dc99; font-weight: 500;">conservation in private lands</span>, Shekhar comes with extensive experience in managing man-animal conflict. He was instrumental in the reintroduction of tigers in Panna.
+                    </p>
+                </div>
+                
+                <!-- Biome Environmental Solutions -->
+                <div style="
+                    flex: 0 0 31%;
+                    background: rgba(255, 255, 255, 0.05);
+                    border-radius: 12px;
+                    padding: 24px;
+                    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    backdrop-filter: blur(5px);
+                    transition: transform 0.3s ease;
+                " onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="
+                        width: 80px;
+                        height: 80px;
+                        border-radius: 50%;
+                        overflow: hidden;
+                        margin-bottom: 16px;
+                        border: 2px solid #ffc083;
+                    ">
+                        <img src="images/slide_30b.webp" alt="Biome Environmental Solutions" style="
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        ">
+                    </div>
+                    <div style="
+                        font-family: 'ABC Arizona Flare Light', serif;
+                        font-size: 11px;
+                        text-transform: uppercase;
+                        color: #ffc083;
+                        margin-bottom: 8px;
+                        letter-spacing: 1px;
+                    ">
+                        ARCHITECTURE
+                    </div>
+                    <h2 style="
+                        font-family: 'ABC Arizona Flare', serif;
+                        font-size: 16px;
+                        font-weight: normal;
+                        margin: 0 0 12px 0;
+                        color: #fdfbf7;
+                        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+                        line-height: 1.2;
+                    ">
+                        BIOME ENVIRONMENTAL SOLUTIONS
+                    </h2>
+                    <p style="
+                        font-family: 'ABC Arizona Sans', sans-serif;
+                        font-size: 11px;
+                        line-height: 1.5;
+                        color: #fdfbf7;
+                        margin: 0;
+                        opacity: 0.9;
+                    ">
+                        Single handedly responsible for taking <span style="color: #ffc083; font-weight: 500;">sustainable architecture mainstream</span> in India, Biome has done 500+ projects, each being an example of buildings being a part of the landscape.
+                    </p>
+                </div>
+                
+                <!-- United Designers, USA -->
+                <div style="
+                    flex: 0 0 31%;
+                    background: rgba(255, 255, 255, 0.05);
+                    border-radius: 12px;
+                    padding: 24px;
+                    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    backdrop-filter: blur(5px);
+                    transition: transform 0.3s ease;
+                " onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="
+                        width: 80px;
+                        height: 80px;
+                        border-radius: 50%;
+                        overflow: hidden;
+                        margin-bottom: 16px;
+                        border: 2px solid #ff774a;
+                    ">
+                        <img src="images/slide_30c.jpg" alt="United Designers, USA" style="
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        ">
+                    </div>
+                    <div style="
+                        font-family: 'ABC Arizona Flare Light', serif;
+                        font-size: 11px;
+                        text-transform: uppercase;
+                        color: #ff774a;
+                        margin-bottom: 8px;
+                        letter-spacing: 1px;
+                    ">
+                        PERMACULTURE
+                    </div>
+                    <h2 style="
+                        font-family: 'ABC Arizona Flare', serif;
+                        font-size: 16px;
+                        font-weight: normal;
+                        margin: 0 0 12px 0;
+                        color: #fdfbf7;
+                        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+                        line-height: 1.2;
+                    ">
+                        UNITED DESIGNERS, USA
+                    </h2>
+                    <p style="
+                        font-family: 'ABC Arizona Sans', sans-serif;
+                        font-size: 11px;
+                        line-height: 1.5;
+                        color: #fdfbf7;
+                        margin: 0;
+                        opacity: 0.9;
+                    ">
+                        When it comes to <span style="color: #ff774a; font-weight: 500;">permaculture landscapes at scale</span>, United Designers comes with unparalleled experience across geographies and across verticals.
+                    </p>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            font-size: 10px;
+            opacity: 0.7;
+        ">
+            <div style="
+                font-family: 'ABC Arizona Flare Light', serif;
+                color: rgba(253, 251, 247, 0.6);
+            ">
+                23
+            </div>
+            <div style="
+                font-family: 'ABC Arizona Flare Light', serif;
+                color: rgba(253, 251, 247, 0.6);
+            ">
+                Beforest Green Fund
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

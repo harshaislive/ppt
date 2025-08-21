@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Fund - Financial Performance Metrics</title>
+    <style>
+        @font-face {
+            font-family: 'ABC Arizona Flare';
+            src: url('fonts/ABCArizonaFlare-Regular.woff2') format('woff2');
+            font-weight: normal;
+        }
+        @font-face {
+            font-family: 'ABC Arizona Flare Light';
+            src: url('fonts/ABCArizonaFlare-Light.woff2') format('woff2');
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: 'ABC Arizona Sans';
+            src: url('fonts/ABCArizonaFlareSans-Regular.woff2') format('woff2');
+        }
+    </style>
+</head>
+<body style="
+    margin: 0;
+    padding: 0;
+    font-family: 'ABC Arizona Sans', sans-serif;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background: linear-gradient(135deg, #002140 0%, #00385e 100%);
+    color: #fdfbf7;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+">
+    <!-- Background Image -->
+    <div style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('images/slide_15.webp');
+        background-size: cover;
+        background-position: center;
+        z-index: 1;
+    "></div>
+    
+    <!-- Overlay -->
+    <div style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(0, 33, 64, 0.85), rgba(0, 56, 94, 0.75));
+        z-index: 2;
+    "></div>
+    
+    <!-- Grid Pattern -->
+    <div style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.03;
+        background-image: 
+            radial-gradient(#b0ddf1 1px, transparent 1px),
+            radial-gradient(#ffc083 1px, transparent 1px);
+        background-size: 40px 40px, 30px 30px;
+        background-position: 0 0, 20px 20px;
+        z-index: 3;
+    "></div>
+    
+    <!-- Content Container -->
+    <div style="
+        position: relative;
+        z-index: 10;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 24px;
+    ">
+        <!-- Header -->
+        <header style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        "></header>
+        
+        <!-- Main Content -->
+        <main style="
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+        ">
+            <!-- Header Section -->
+            <div style="text-align: center; margin-bottom: 40px;">
+                <h1 style="
+                    font-family: 'ABC Arizona Flare', serif;
+                    font-size: 36px;
+                    font-weight: normal;
+                    text-transform: uppercase;
+                    line-height: 1.1;
+                    margin: 0 0 12px 0;
+                    color: #b0ddf1;
+                    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+                ">
+                    Financial Performance Metrics
+                </h1>
+                <div style="
+                    font-family: 'ABC Arizona Flare', serif;
+                    font-size: 14px;
+                    font-weight: normal;
+                    text-transform: uppercase;
+                    color: #ffc083;
+                    margin-bottom: 8px;
+                ">
+                    Investment Returns Framework
+                </div>
+                <div style="
+                    font-family: 'ABC Arizona Flare Light', serif;
+                    font-size: 14px;
+                    color: #b8dc99;
+                    font-style: italic;
+                ">
+                    Proven Financial Performance
+                </div>
+            </div>
+            
+            <!-- Content Grid -->
+            <div style="
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            ">
+                <!-- Track Record Card -->
+                <div style="
+                    background: linear-gradient(135deg, rgba(255, 192, 131, 0.15), rgba(255, 192, 131, 0.05));
+                    border: 1px solid rgba(255, 192, 131, 0.3);
+                    border-radius: 16px;
+                    padding: 32px;
+                    backdrop-filter: blur(10px);
+                    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+                    text-align: center;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                ">
+                    <div style="
+                        font-family: 'ABC Arizona Flare', serif;
+                        font-size: 16px;
+                        color: #ffc083;
+                        margin-bottom: 20px;
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                    ">
+                        Our Track Record
+                    </div>
+                    <div style="
+                        font-family: 'ABC Arizona Flare', serif;
+                        font-size: 64px;
+                        color: #fdfbf7;
+                        font-weight: 300;
+                        line-height: 1;
+                        margin: 20px 0;
+                        text-shadow: 0 4px 20px rgba(255, 192, 131, 0.3);
+                    ">
+                        28%
+                    </div>
+                    <div style="
+                        font-family: 'ABC Arizona Sans', sans-serif;
+                        font-size: 12px;
+                        color: #b0ddf1;
+                        text-transform: uppercase;
+                        letter-spacing: 0.5px;
+                    ">
+                        Weighted Average IRR Since 2021
+                    </div>
+                </div>
+                
+                <!-- Comparison Section -->
+                <div style="
+                    background: rgba(0, 33, 64, 0.4);
+                    border: 1px solid rgba(176, 221, 241, 0.15);
+                    border-radius: 16px;
+                    padding: 32px;
+                    backdrop-filter: blur(10px);
+                    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+                ">
+                    <div style="
+                        font-family: 'ABC Arizona Flare', serif;
+                        font-size: 16px;
+                        color: #ff774a;
+                        margin-bottom: 24px;
+                        text-transform: uppercase;
+                        padding-bottom: 12px;
+                        border-bottom: 1px solid rgba(255, 119, 74, 0.3);
+                    ">
+                        In Comparison
+                    </div>
+                    <div style="
+                        display: flex;
+                        flex-direction: column;
+                        gap: 16px;
+                    ">
+                        <div style="
+                            display: flex;
+                            align-items: flex-start;
+                            gap: 10px;
+                        ">
+                            <div style="width: 6px; height: 6px; background: #b8dc99; border-radius: 50%; margin-top: 5px; flex-shrink: 0;"></div>
+                            <div style="font-family: 'ABC Arizona Sans', sans-serif; font-size: 12px; color: #fdfbf7; line-height: 1.4;">
+                                <span style="color: #b0ddf1; font-weight: 500;">Infrastructure Funds</span>: 6-12% target returns
+                            </div>
+                        </div>
+                        
+                        <div style="
+                            display: flex;
+                            align-items: flex-start;
+                            gap: 10px;
+                        ">
+                            <div style="width: 6px; height: 6px; background: #b8dc99; border-radius: 50%; margin-top: 5px; flex-shrink: 0;"></div>
+                            <div style="font-family: 'ABC Arizona Sans', sans-serif; font-size: 12px; color: #fdfbf7; line-height: 1.4;">
+                                <span style="color: #b0ddf1; font-weight: 500;">Development Funds</span>: 12-20% target returns
+                            </div>
+                        </div>
+                        
+                        <div style="
+                            display: flex;
+                            align-items: flex-start;
+                            gap: 10px;
+                        ">
+                            <div style="width: 6px; height: 6px; background: #b8dc99; border-radius: 50%; margin-top: 5px; flex-shrink: 0;"></div>
+                            <div style="font-family: 'ABC Arizona Sans', sans-serif; font-size: 12px; color: #fdfbf7; line-height: 1.4;">
+                                <span style="color: #b0ddf1; font-weight: 500;">Emerging Markets Premium</span>: 45% higher returns in renewable energy
+                            </div>
+                        </div>
+                        
+                        <div style="
+                            display: flex;
+                            align-items: flex-start;
+                            gap: 10px;
+                        ">
+                            <div style="width: 6px; height: 6px; background: #b8dc99; border-radius: 50%; margin-top: 5px; flex-shrink: 0;"></div>
+                            <div style="font-family: 'ABC Arizona Sans', sans-serif; font-size: 12px; color: #fdfbf7; line-height: 1.4;">
+                                <span style="color: #b0ddf1; font-weight: 500;">Blended Finance Structures</span>: 15-20% IRRs with 60% risk reduction
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            font-size: 10px;
+            opacity: 0.7;
+        ">
+            <div style="
+                font-family: 'ABC Arizona Sans', sans-serif;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                color: rgba(253, 251, 247, 0.6);
+            ">
+                Private and Confidential
+            </div>
+            <div style="
+                font-family: 'ABC Arizona Sans', sans-serif;
+                color: rgba(253, 251, 247, 0.6);
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            ">
+                <div style="
+                    width: 20px;
+                    height: 20px;
+                    border: 1px solid rgba(253, 251, 247, 0.3);
+                    border-radius: 4px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 9px;
+                ">15</div>
+                of 25
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

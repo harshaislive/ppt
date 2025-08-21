@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Fund - Hedge Risk</title>
+    <style>
+        @font-face {
+            font-family: 'ABC Arizona Flare';
+            src: url('fonts/ABCArizonaFlare-Regular.woff2') format('woff2');
+            font-weight: normal;
+        }
+        @font-face {
+            font-family: 'ABC Arizona Sans';
+            src: url('fonts/ABCArizonaFlareSans-Regular.woff2') format('woff2');
+        }
+    </style>
+</head>
+<body style="
+    margin: 0;
+    padding: 0;
+    font-family: 'ABC Arizona Sans', sans-serif;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background: linear-gradient(135deg, #002140 0%, #00385e 100%);
+    color: #fdfbf7;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+">
+    <!-- Grid Pattern Background -->
+    <div style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.05;
+        background-image: 
+            radial-gradient(#b0ddf1 1px, transparent 1px),
+            radial-gradient(#ffc083 1px, transparent 1px);
+        background-size: 40px 40px, 30px 30px;
+        background-position: 0 0, 20px 20px;
+        z-index: 2;
+    "></div>
+    
+    <!-- Content Container -->
+    <div style="
+        position: relative;
+        z-index: 10;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 24px;
+    ">
+        <!-- Header -->
+        <header style="
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 20px;
+        "></header>
+        
+        <!-- Main Content -->
+        <main style="
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+        ">
+            <!-- Header Section -->
+            <div style="text-align: center; margin-bottom: 40px;">
+                <h1 style="
+                    font-family: 'ABC Arizona Flare', serif;
+                    font-size: 36px;
+                    text-transform: uppercase;
+                    line-height: 1.1;
+                    margin: 0 0 16px 0;
+                    color: #fdfbf7;
+                    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+                    letter-spacing: 2px;
+                ">
+                    Hedge
+                </h1>
+                <div style="
+                    font-family: 'ABC Arizona Sans', sans-serif;
+                    font-size: 14px;
+                    color: #b0ddf1;
+                    max-width: 600px;
+                    margin: 0 auto;
+                    line-height: 1.4;
+                ">
+                    Asset Backed Investments into Regenerative Landscape Management
+                </div>
+            </div>
+            
+            <!-- Investment Strategy Section -->
+            <div style="
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 12px;
+                padding: 24px;
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                margin-bottom: 24px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            ">
+                <div style="
+                    font-family: 'ABC Arizona Flare', serif;
+                    font-size: 18px;
+                    color: #ffc083;
+                    margin-bottom: 16px;
+                    text-transform: uppercase;
+                ">
+                    Investment Strategy
+                </div>
+                <div style="
+                    font-family: 'ABC Arizona Sans', sans-serif;
+                    font-size: 13px;
+                    color: #fdfbf7;
+                    line-height: 1.6;
+                    opacity: 0.95;
+                ">
+                    Focus on projects that unlock value of a landscape while being regenerative. Investing into Landscapes that encourage resilience, food security, enable local employment and benefit all stakeholders with 4 returns.
+                </div>
+            </div>
+            
+            <!-- Benefits Grid -->
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            ">
+                <!-- Resilience & Food Security -->
+                <div style="
+                    background: linear-gradient(135deg, rgba(184, 220, 153, 0.1), rgba(184, 220, 153, 0.05));
+                    border: 1px solid rgba(184, 220, 153, 0.2);
+                    border-radius: 8px;
+                    padding: 20px;
+                    backdrop-filter: blur(5px);
+                    transition: transform 0.3s ease;
+                " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="
+                        font-family: 'ABC Arizona Flare', serif;
+                        font-size: 14px;
+                        color: #b8dc99;
+                        margin-bottom: 8px;
+                        font-weight: 500;
+                    ">
+                        Resilience & Food Security
+                    </div>
+                    <div style="
+                        font-family: 'ABC Arizona Sans', sans-serif;
+                        font-size: 11px;
+                        color: #fdfbf7;
+                        line-height: 1.4;
+                        opacity: 0.9;
+                    ">
+                        Landscapes designed to withstand climate challenges while providing sustainable food production systems
+                    </div>
+                </div>
+                
+                <!-- Local Employment -->
+                <div style="
+                    background: linear-gradient(135deg, rgba(255, 119, 74, 0.1), rgba(255, 119, 74, 0.05));
+                    border: 1px solid rgba(255, 119, 74, 0.2);
+                    border-radius: 8px;
+                    padding: 20px;
+                    backdrop-filter: blur(5px);
+                    transition: transform 0.3s ease;
+                " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="
+                        font-family: 'ABC Arizona Flare', serif;
+                        font-size: 14px;
+                        color: #ff774a;
+                        margin-bottom: 8px;
+                        font-weight: 500;
+                    ">
+                        Local Employment
+                    </div>
+                    <div style="
+                        font-family: 'ABC Arizona Sans', sans-serif;
+                        font-size: 11px;
+                        color: #fdfbf7;
+                        line-height: 1.4;
+                        opacity: 0.9;
+                    ">
+                        Creating meaningful employment opportunities within farming and landscape management communities
+                    </div>
+                </div>
+                
+                <!-- Stakeholder Benefits -->
+                <div style="
+                    background: linear-gradient(135deg, rgba(176, 221, 241, 0.1), rgba(176, 221, 241, 0.05));
+                    border: 1px solid rgba(176, 221, 241, 0.2);
+                    border-radius: 8px;
+                    padding: 20px;
+                    backdrop-filter: blur(5px);
+                    transition: transform 0.3s ease;
+                " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="
+                        font-family: 'ABC Arizona Flare', serif;
+                        font-size: 14px;
+                        color: #b0ddf1;
+                        margin-bottom: 8px;
+                        font-weight: 500;
+                    ">
+                        Stakeholder Benefits
+                    </div>
+                    <div style="
+                        font-family: 'ABC Arizona Sans', sans-serif;
+                        font-size: 11px;
+                        color: #fdfbf7;
+                        line-height: 1.4;
+                        opacity: 0.9;
+                    ">
+                        Ensuring all stakeholders benefit through the comprehensive Four Returns framework approach
+                    </div>
+                </div>
+                
+                <!-- Asset-Backed Security -->
+                <div style="
+                    background: linear-gradient(135deg, rgba(255, 192, 131, 0.1), rgba(255, 192, 131, 0.05));
+                    border: 1px solid rgba(255, 192, 131, 0.2);
+                    border-radius: 8px;
+                    padding: 20px;
+                    backdrop-filter: blur(5px);
+                    transition: transform 0.3s ease;
+                " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="
+                        font-family: 'ABC Arizona Flare', serif;
+                        font-size: 14px;
+                        color: #ffc083;
+                        margin-bottom: 8px;
+                        font-weight: 500;
+                    ">
+                        Asset-Backed Security
+                    </div>
+                    <div style="
+                        font-family: 'ABC Arizona Sans', sans-serif;
+                        font-size: 11px;
+                        color: #fdfbf7;
+                        line-height: 1.4;
+                        opacity: 0.9;
+                    ">
+                        Investments backed by tangible land assets and regenerative landscape management projects
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            font-size: 10px;
+            opacity: 0.7;
+        ">
+            <div style="
+                font-family: 'ABC Arizona Sans', sans-serif;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                color: rgba(253, 251, 247, 0.6);
+            ">
+                Private and Confidential
+            </div>
+            <div style="
+                font-family: 'ABC Arizona Sans', sans-serif;
+                color: rgba(253, 251, 247, 0.6);
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            ">
+                <div style="
+                    width: 20px;
+                    height: 20px;
+                    border: 1px solid rgba(253, 251, 247, 0.3);
+                    border-radius: 4px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 9px;
+                ">13</div>
+                of 25
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

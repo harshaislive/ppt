@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Fund - The Business of Sustainability</title>
+    <style>
+        @font-face {
+            font-family: 'ABC Arizona Flare';
+            src: url('assets/fonts/ABCArizonaFlare-Regular.woff2') format('woff2');
+            font-weight: normal;
+        }
+        @font-face {
+            font-family: 'ABC Arizona Sans';
+            src: url('assets/fonts/ABCArizonaFlareSans-Regular.woff2') format('woff2');
+        }
+    </style>
+</head>
+<body style="
+    margin: 0;
+    padding: 0;
+    font-family: 'ABC Arizona Sans', sans-serif;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background: linear-gradient(135deg, #342e29 0%, #4b3c35 100%);
+    color: #fdfbf7;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+">
+    <!-- Background Image -->
+    <div style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('assets/images/slide_5.webp');
+        background-size: cover;
+        background-position: center;
+        z-index: 1;
+    "></div>
+    
+    <!-- Overlay -->
+    <div style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(52, 46, 41, 0.75);
+        z-index: 2;
+    "></div>
+    
+    <!-- Content Container -->
+    <div style="
+        position: relative;
+        z-index: 10;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 24px;
+    ">
+        <!-- Header -->
+        <header style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        ">
+            <img src="assets/images/logos/beforest_logo.webp" alt="Beforest" style="height: 32px; opacity: 0.9;">
+        </header>
+        
+        <!-- Main Content -->
+        <main style="
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+        ">
+            <!-- Headline Section -->
+            <div style="text-align: center; margin-bottom: 32px;">
+                <div style="
+                    font-family: 'ABC Arizona Sans', sans-serif;
+                    font-size: 12px;
+                    letter-spacing: 1px;
+                    color: #b0ddf1;
+                    margin-bottom: 8px;
+                ">
+                    The Business of Sustainability
+                </div>
+                <h1 style="
+                    font-family: 'ABC Arizona Flare', serif;
+                    font-size: 32px;
+                    font-weight: 300;
+                    text-transform: uppercase;
+                    line-height: 1.1;
+                    color: #ffc083;
+                    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+                    margin: 0;
+                    position: relative;
+                    display: inline-block;
+                ">
+                    Landscape Restoration
+                    <div style="
+                        position: absolute;
+                        bottom: -8px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 80px;
+                        height: 2px;
+                        background: linear-gradient(90deg, transparent, #ffc083, transparent);
+                    "></div>
+                </h1>
+            </div>
+            
+            <!-- Connection Text -->
+            <div style="
+                font-family: 'ABC Arizona Sans', sans-serif;
+                font-size: 14px;
+                text-align: center;
+                color: #ffc083;
+                margin-bottom: 32px;
+                font-style: italic;
+            ">
+                How soil restoration creates measurable returns across four dimensions:
+            </div>
+            
+            <!-- Cards Grid -->
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                max-width: 900px;
+                margin: 0 auto;
+                width: 100%;
+            ">
+                <!-- Financial Card -->
+                <div style="
+                    background: rgba(52, 46, 41, 0.4);
+                    border: 1px solid rgba(255, 192, 131, 0.2);
+                    border-radius: 8px;
+                    padding: 20px;
+                    backdrop-filter: blur(5px);
+                    position: relative;
+                    transition: transform 0.3s ease;
+                    border-top: 3px solid #ffc083;
+                " onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="
+                        font-family: 'ABC Arizona Flare', serif;
+                        font-size: 14px;
+                        color: #ffc083;
+                        margin-bottom: 8px;
+                        font-weight: 500;
+                    ">
+                        Financial
+                    </div>
+                    <div style="
+                        font-family: 'ABC Arizona Sans', sans-serif;
+                        font-size: 11px;
+                        color: #fdfbf7;
+                        opacity: 0.85;
+                        line-height: 1.3;
+                    ">
+                        300% returns from regenerated farmland
+                    </div>
+                </div>
+                
+                <!-- Natural Card -->
+                <div style="
+                    background: rgba(52, 46, 41, 0.4);
+                    border: 1px solid rgba(255, 119, 74, 0.2);
+                    border-radius: 8px;
+                    padding: 20px;
+                    backdrop-filter: blur(5px);
+                    position: relative;
+                    transition: transform 0.3s ease;
+                    border-top: 3px solid #ff774a;
+                " onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="
+                        font-family: 'ABC Arizona Flare', serif;
+                        font-size: 14px;
+                        color: #ff774a;
+                        margin-bottom: 8px;
+                        font-weight: 500;
+                    ">
+                        Natural
+                    </div>
+                    <div style="
+                        font-family: 'ABC Arizona Sans', sans-serif;
+                        font-size: 11px;
+                        color: #fdfbf7;
+                        opacity: 0.85;
+                        line-height: 1.3;
+                    ">
+                        21M litres water + 68 tonnes chemicals saved
+                    </div>
+                </div>
+                
+                <!-- Social Card -->
+                <div style="
+                    background: rgba(52, 46, 41, 0.4);
+                    border: 1px solid rgba(184, 220, 153, 0.2);
+                    border-radius: 8px;
+                    padding: 20px;
+                    backdrop-filter: blur(5px);
+                    position: relative;
+                    transition: transform 0.3s ease;
+                    border-top: 3px solid #b8dc99;
+                " onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="
+                        font-family: 'ABC Arizona Flare', serif;
+                        font-size: 14px;
+                        color: #b8dc99;
+                        margin-bottom: 8px;
+                        font-weight: 500;
+                    ">
+                        Social
+                    </div>
+                    <div style="
+                        font-family: 'ABC Arizona Sans', sans-serif;
+                        font-size: 11px;
+                        color: #fdfbf7;
+                        opacity: 0.85;
+                        line-height: 1.3;
+                    ">
+                        200+ families in farming communities
+                    </div>
+                </div>
+                
+                <!-- Inspiration Card -->
+                <div style="
+                    background: rgba(52, 46, 41, 0.4);
+                    border: 1px solid rgba(176, 221, 241, 0.2);
+                    border-radius: 8px;
+                    padding: 20px;
+                    backdrop-filter: blur(5px);
+                    position: relative;
+                    transition: transform 0.3s ease;
+                    border-top: 3px solid #b0ddf1;
+                " onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="
+                        font-family: 'ABC Arizona Flare', serif;
+                        font-size: 14px;
+                        color: #b0ddf1;
+                        margin-bottom: 8px;
+                        font-weight: 500;
+                    ">
+                        Inspiration
+                    </div>
+                    <div style="
+                        font-family: 'ABC Arizona Sans', sans-serif;
+                        font-size: 11px;
+                        color: #fdfbf7;
+                        opacity: 0.85;
+                        line-height: 1.3;
+                    ">
+                        Purpose-driven land restoration mission
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footnote -->
+            <div style="
+                font-family: 'ABC Arizona Sans', sans-serif;
+                font-size: 9px;
+                color: rgba(253, 251, 247, 0.5);
+                margin-top: 24px;
+                text-align: center;
+                font-style: italic;
+            ">
+                *4 returns framework was developed by commonland. www.commonland.com/4-returns
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            font-size: 10px;
+            opacity: 0.7;
+        ">
+            <div style="
+                font-family: 'ABC Arizona Sans', sans-serif;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                color: rgba(253, 251, 247, 0.6);
+            ">
+                Private and Confidential
+            </div>
+            <div style="
+                font-family: 'ABC Arizona Sans', sans-serif;
+                color: rgba(253, 251, 247, 0.6);
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            ">
+                <div style="
+                    width: 20px;
+                    height: 20px;
+                    border: 1px solid rgba(253, 251, 247, 0.3);
+                    border-radius: 4px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 9px;
+                ">05</div>
+                of 25
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

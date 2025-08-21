@@ -15,6 +15,7 @@ app.use(cors());
 
 // Serve static files (HTML slides, fonts, images)
 app.use('/old', express.static(path.join(__dirname, 'old')));
+app.use('/new', express.static(path.join(__dirname, 'new')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Main route - serve the frontend
@@ -24,11 +25,12 @@ app.get('/', (req, res) => {
 
 // Screenshot-based PDF generation
 app.get('/generate-pdf', async (req, res) => {
-    console.log('Creating PDF from screenshots...');
+    const version = req.query.version || 'old';
+    console.log(`Creating PDF from screenshots using ${version} folder...`);
     
     try {
-        // Get all slide files
-        const slidesDir = path.join(__dirname, 'old');
+        // Get all slide files from selected version
+        const slidesDir = path.join(__dirname, version);
         const files = await fs.readdir(slidesDir);
         const slideFiles = files
             .filter(file => file.startsWith('slide') && file.endsWith('.html'))
@@ -80,7 +82,7 @@ app.get('/generate-pdf', async (req, res) => {
         // Take screenshots of each slide
         for (let i = 0; i < slideFiles.length; i++) {
             const slideFile = slideFiles[i];
-            const slideUrl = `${baseUrl}/old/${slideFile}`;
+            const slideUrl = `${baseUrl}/${version}/${slideFile}`;
             
             console.log(`Capturing slide ${i + 1}/${slideFiles.length}: ${slideFile}`);
             
@@ -178,8 +180,9 @@ app.get('/generate-pdf', async (req, res) => {
 
 // Alternative simple method - same as above but different endpoint
 app.get('/generate-pdf-simple', async (req, res) => {
-    // Redirect to main PDF method
-    res.redirect('/generate-pdf');
+    const version = req.query.version || 'old';
+    // Redirect to main PDF method with version
+    res.redirect(`/generate-pdf?version=${version}`);
 });
 
 // Individual slide preview

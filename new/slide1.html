@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Fund - Investment Note</title>
+    <style>
+        @font-face {
+            font-family: 'ABC Arizona Flare';
+            src: url('assets/fonts/ABCArizonaFlare-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Medium';
+            src: url('assets/fonts/ABCArizonaFlare-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Light';
+            src: url('assets/fonts/ABCArizonaFlare-Light.woff2') format('woff2');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Sans';
+            src: url('assets/fonts/ABCArizonaFlareSans-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            /* Primary Brand Colors */
+            --color-dark-earth: #342e29;
+            --color-rich-red: #86312b;
+            --color-forest-green: #344736;
+            --color-deep-blue: #002140;
+            
+            /* Accent Colors */
+            --color-warm-yellow: #ffc083;
+            --color-coral: #ff774a;
+            --color-soft-green: #b8dc99;
+            --color-light-blue: #b0ddf1;
+            
+            /* Neutral Colors */
+            --color-off-white: #fdfbf7;
+            --color-charcoal: #51514d;
+            --color-soft-gray: #e7e4df;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--color-deep-blue) 0%, #001935 100%);
+            color: var(--color-off-white);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Modern background elements */
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('assets/images/slide_1.webp');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+            filter: blur(1px);
+        }
+
+        .bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba(0, 33, 64, 0.85) 0%,
+                rgba(52, 46, 41, 0.75) 50%,
+                rgba(0, 33, 64, 0.85) 100%
+            );
+            z-index: 2;
+        }
+
+        .decorative-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .circle-accent {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255, 192, 131, 0.1), rgba(176, 221, 241, 0.1));
+            backdrop-filter: blur(2px);
+        }
+
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            top: -100px;
+            right: -50px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .circle-2 {
+            width: 200px;
+            height: 200px;
+            bottom: -50px;
+            left: -30px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+        }
+
+        /* Header */
+        .header {
+            padding: 24px 40px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* Main content with modern card design */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+            padding: 40px;
+        }
+
+        .content-card {
+            background: rgba(253, 251, 247, 0.08);
+            border: 1px solid rgba(255, 192, 131, 0.2);
+            border-radius: 16px;
+            padding: 48px;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            max-width: 700px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .label {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 11px;
+            font-weight: normal;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 20px;
+            color: var(--color-warm-yellow);
+            display: inline-block;
+            position: relative;
+            opacity: 0.9;
+        }
+
+        .label::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--color-warm-yellow), transparent);
+        }
+
+        .title {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 52px;
+            font-weight: normal;
+            line-height: 1.1;
+            margin: 32px 0;
+            position: relative;
+            color: var(--color-off-white);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            letter-spacing: 0.02em;
+        }
+
+        .subtitle-text {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 16px;
+            font-weight: normal;
+            font-style: italic;
+            margin-top: 24px;
+            color: var(--color-light-blue);
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 24px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+            background: rgba(0, 33, 64, 0.2);
+            backdrop-filter: blur(8px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .confidential {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(253, 251, 247, 0.6);
+        }
+
+        .slide-number {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 10px;
+            color: rgba(253, 251, 247, 0.6);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 20px;
+            }
+            
+            .content-card {
+                padding: 32px 24px;
+            }
+            
+            .title {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <!-- Background elements -->
+        <div class="bg-image"></div>
+        <div class="bg-overlay"></div>
+        
+        <!-- Decorative elements -->
+        <div class="decorative-elements">
+            <div class="circle-accent circle-1"></div>
+            <div class="circle-accent circle-2"></div>
+        </div>
+        
+        <!-- Header area -->
+        <header class="header"></header>
+        
+        <!-- Main content -->
+        <main class="main-content">
+            <div class="content-card">
+                <div class="label">Investment Note</div>
+                <h1 class="title">GREEN FUND</h1>
+                <div class="subtitle-text">Regenerative Economy Infrastructure Investment</div>
+            </div>
+        </main>
+        
+        <!-- Footer area -->
+        <footer class="footer">
+            <div class="confidential">PRIVATE AND CONFIDENTIAL</div>
+            <div class="slide-number">01</div>
+        </footer>
+    </div>
+</body>
+</html>

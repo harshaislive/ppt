@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Fund - Regenerative Economic Practices</title>
+    <style>
+        @font-face {
+            font-family: 'ABC Arizona Flare';
+            src: url('fonts/ABCArizonaFlare-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Sans';
+            src: url('fonts/ABCArizonaFlareSans-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            /* Primary Colors */
+            --color-deep-blue: #002140;
+            --color-forest-green: #344736;
+            --color-dark-earth: #342e29;
+            
+            /* Accent Colors */
+            --color-warm-yellow: #ffc083;
+            --color-coral: #ff774a;
+            --color-soft-green: #b8dc99;
+            --color-light-blue: #b0ddf1;
+            
+            /* Neutral Colors */
+            --color-off-white: #fdfbf7;
+            --color-charcoal: #51514d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--color-deep-blue) 0%, var(--color-forest-green) 100%);
+            color: var(--color-off-white);
+            position: relative;
+        }
+
+        .slide {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Background elements */
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/slide_7.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(0, 33, 64, 0.85) 0%, 
+                rgba(52, 71, 54, 0.75) 50%,
+                rgba(52, 46, 41, 0.8) 100%);
+            z-index: 2;
+            backdrop-filter: blur(1px);
+        }
+
+        /* Content layout */
+        .header {
+            padding: 32px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+            padding: 0 48px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .headline {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 32px;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 12px;
+            color: var(--color-off-white);
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 14px;
+            color: var(--color-warm-yellow);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(253, 251, 247, 0.95);
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 
+                0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 10px 25px -3px rgba(0, 0, 0, 0.1),
+                0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 18px;
+            color: var(--color-deep-blue);
+            margin-bottom: 20px;
+            font-weight: 600;
+            border-bottom: 2px solid var(--color-warm-yellow);
+            padding-bottom: 8px;
+        }
+
+        .practice-list {
+            list-style: none;
+            space-y: 12px;
+        }
+
+        .practice-item {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 14px;
+            color: var(--color-charcoal);
+            margin-bottom: 16px;
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .practice-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 6px;
+            height: 6px;
+            background: var(--color-soft-green);
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px rgba(184, 220, 153, 0.2);
+        }
+
+        .practice-item strong {
+            color: var(--color-forest-green);
+            font-weight: 600;
+            margin-right: 4px;
+        }
+
+        .footer {
+            padding: 32px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .confidential {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(253, 251, 247, 0.6);
+            font-weight: 500;
+        }
+
+        .slide-number {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 12px;
+            color: rgba(253, 251, 247, 0.8);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 6px 12px;
+            border-radius: 6px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .main-content {
+                padding: 0 32px;
+            }
+            
+            .header, .footer {
+                padding: 24px 32px;
+            }
+        }
+
+        /* Subtle animations */
+        .card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .headline {
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .subtitle {
+            animation: fadeInDown 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <!-- Background elements -->
+        <div class="bg-image"></div>
+        <div class="bg-overlay"></div>
+        
+        <!-- Header area -->
+        <header class="header"></header>
+        
+        <!-- Main content -->
+        <main class="main-content">
+            <div class="header-section">
+                <h1 class="headline">Regenerative Economic Practices</h1>
+                <div class="subtitle">Science-Based Land Restoration</div>
+            </div>
+            
+            <div class="content-grid">
+                <div class="card">
+                    <div class="section-title">Four Returns Framework</div>
+                    <ul class="practice-list">
+                        <li class="practice-item">
+                            <strong>Financial:</strong> 300% returns from regenerated farmland
+                        </li>
+                        <li class="practice-item">
+                            <strong>Natural:</strong> Water conservation, soil restoration, biodiversity
+                        </li>
+                        <li class="practice-item">
+                            <strong>Social:</strong> 200+ farming families empowered
+                        </li>
+                        <li class="practice-item">
+                            <strong>Inspiration:</strong> Purpose-driven land restoration mission
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="section-title">Other Regenerative Approaches</div>
+                    <ul class="practice-list">
+                        <li class="practice-item">
+                            <strong>Permaculture Design:</strong> Natural ecosystem integration
+                        </li>
+                        <li class="practice-item">
+                            <strong>Water Management:</strong> Check dams, rainwater harvesting, swales
+                        </li>
+                        <li class="practice-item">
+                            <strong>Soil Restoration:</strong> No external chemicals, natural farming methods
+                        </li>
+                        <li class="practice-item">
+                            <strong>Biodiversity Enhancement:</strong> Native flora and fauna propagation
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer area -->
+        <footer class="footer">
+            <div class="confidential">PRIVATE AND CONFIDENTIAL</div>
+            <div class="slide-number">07</div>
+        </footer>
+    </div>
+</body>
+</html>
