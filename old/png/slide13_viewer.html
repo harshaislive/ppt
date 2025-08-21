@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Fund - Hedge Risk</title>
+    <style>
+        @font-face {
+            font-family: 'ABC Arizona Flare';
+            src: url('../fonts/ABCArizonaFlare-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Medium';
+            src: url('../fonts/ABCArizonaFlare-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Light';
+            src: url('../fonts/ABCArizonaFlare-Light.woff2') format('woff2');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Sans';
+            src: url('../fonts/ABCArizonaFlareSans-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --color-deep-blue: #002140;
+            --color-light-blue: #b0ddf1;
+            --color-forest-green: #344736;
+            --color-warm-yellow: #ffc083;
+            --color-soft-green: #b8dc99;
+            --color-coral: #ff774a;
+            --color-off-white: #fdfbf7;
+            --color-charcoal: #51514d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background-color: var(--color-deep-blue);
+            color: var(--color-off-white);
+        }
+
+        .slide {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Background elements */
+        .bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--color-deep-blue);
+            z-index: 1;
+        }
+
+        .bg-texture {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            background-image: 
+                radial-gradient(var(--color-light-blue) 1px, transparent 1px),
+                radial-gradient(var(--color-warm-yellow) 1px, transparent 1px);
+            background-size: 40px 40px, 30px 30px;
+            background-position: 0 0, 20px 20px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .organic-shape {
+            position: absolute;
+            border: 2px solid rgba(184, 220, 153, 0.08);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            top: -100px;
+            right: -100px;
+            transform: rotate(45deg);
+        }
+
+        .shape-2 {
+            width: 300px;
+            height: 300px;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            bottom: -100px;
+            left: -100px;
+            transform: rotate(-30deg);
+            border-color: rgba(255, 192, 131, 0.08);
+        }
+
+        /* Content layout */
+        .header {
+            padding: 40px 60px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+            padding: 40px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .headline {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 36pt;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--color-light-blue);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 18pt;
+            color: var(--color-warm-yellow);
+            margin-bottom: 30px;
+        }
+
+        .content-section {
+            background: rgba(0, 33, 64, 0.4);
+            border: 1px solid rgba(176, 221, 241, 0.15);
+            border-radius: 12px;
+            padding: 40px;
+            backdrop-filter: blur(8px);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .risk-title {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 24pt;
+            color: var(--color-warm-yellow);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .risk-description {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 16pt;
+            color: var(--color-off-white);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 30px;
+            margin-top: 20px;
+        }
+
+        .benefit-item {
+            background: rgba(176, 221, 241, 0.1);
+            border: 1px solid rgba(176, 221, 241, 0.2);
+            border-radius: 8px;
+            padding: 25px;
+            text-align: left;
+        }
+
+        .benefit-title {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 18pt;
+            color: var(--color-light-blue);
+            margin-bottom: 15px;
+        }
+
+        .benefit-text {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 14pt;
+            color: var(--color-off-white);
+            line-height: 1.5;
+        }
+
+        .footer {
+            padding: 40px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .confidential {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 9pt;
+            font-weight: normal;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(253, 251, 247, 0.6);
+        }
+
+        .slide-number {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 11pt;
+            font-weight: normal;
+            color: rgba(253, 251, 247, 0.6);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <!-- Background elements -->
+        <div class="bg-overlay"></div>
+        <div class="bg-texture"></div>
+        <div class="organic-shape shape-1"></div>
+        <div class="organic-shape shape-2"></div>
+        
+        <!-- Header area -->
+        <header class="header">
+        </header>
+        
+        <!-- Main content -->
+        <main class="main-content">
+            <div class="header-section">
+                <h1 class="headline">Hedge</h1>
+                <div class="subtitle">Asset Backed Investments into Regenerative Landscape Management</div>
+            </div>
+            
+            <div class="content-section">
+                <div class="risk-title">Investment Strategy</div>
+                <div class="risk-description">
+                    Focus on projects that unlock value of a landscape while being regenerative. Investing into Landscapes that encourage resilience, food security, enable local employment and benefit all stakeholders with 4 returns.
+                </div>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-title">Resilience & Food Security</div>
+                        <div class="benefit-text">Landscapes designed to withstand climate challenges while providing sustainable food production systems</div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <div class="benefit-title">Local Employment</div>
+                        <div class="benefit-text">Creating meaningful employment opportunities within farming and landscape management communities</div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <div class="benefit-title">Stakeholder Benefits</div>
+                        <div class="benefit-text">Ensuring all stakeholders benefit through the comprehensive Four Returns framework approach</div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <div class="benefit-title">Asset-Backed Security</div>
+                        <div class="benefit-text">Investments backed by tangible land assets and regenerative landscape management projects</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer area -->
+        <footer class="footer">
+            <div class="confidential">PRIVATE AND CONFIDENTIAL</div>
+            <div class="slide-number">13</div>
+        </footer>
+    </div>
+</body>
+</html> 

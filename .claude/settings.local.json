@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebSearch",
+      "WebSearch",
+      "WebFetch(domain:beforest.co)",
+      "WebFetch(domain:beforest.co)",
+      "WebFetch(domain:about.bnef.com)",
+      "Bash(grep:*)",
+      "Bash(for:*)",
+      "Bash(do sed -i 's/<img[^>]*logo-image[^>]*>//g' \"$file\")",
+      "Bash(done)",
+      "Bash(find:*)",
+      "Bash(do)",
+      "Bash(sed:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

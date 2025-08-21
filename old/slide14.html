@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beforest Case Study - Land Use Optimization</title>
+    <style>
+        @font-face {
+            font-family: 'ABC Arizona Flare';
+            src: url('fonts/ABCArizonaFlare-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Medium';
+            src: url('fonts/ABCArizonaFlare-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Light';
+            src: url('fonts/ABCArizonaFlare-Light.woff2') format('woff2');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Sans';
+            src: url('fonts/ABCArizonaFlareSans-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --color-deep-blue: #002140;
+            --color-light-blue: #b0ddf1;
+            --color-forest-green: #344736;
+            --color-warm-yellow: #ffc083;
+            --color-soft-green: #b8dc99;
+            --color-coral: #ff774a;
+            --color-off-white: #fdfbf7;
+            --color-charcoal: #51514d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background-color: var(--color-deep-blue);
+            color: var(--color-off-white);
+        }
+
+        .slide {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Background elements */
+        .bg-texture {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.04;
+            background-image: 
+                radial-gradient(var(--color-light-blue) 1px, transparent 1px),
+                radial-gradient(var(--color-warm-yellow) 1px, transparent 1px);
+            background-size: 40px 40px, 30px 30px;
+            background-position: 0 0, 20px 20px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .organic-shape {
+            position: absolute;
+            border: 2px solid rgba(184, 220, 153, 0.06);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .shape-1 {
+            width: 450px;
+            height: 450px;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            top: -120px;
+            right: -150px;
+            transform: rotate(35deg);
+            border-color: rgba(176, 221, 241, 0.06);
+        }
+
+        .shape-2 {
+            width: 350px;
+            height: 350px;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            bottom: -150px;
+            left: -120px;
+            transform: rotate(-25deg);
+            border-color: rgba(255, 192, 131, 0.06);
+        }
+
+        /* Content layout */
+        .header {
+            padding: 40px 60px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+            padding: 40px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .headline {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 32pt;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 15px;
+            color: var(--color-light-blue);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 16pt;
+            color: var(--color-warm-yellow);
+            margin-bottom: 5px;
+        }
+
+        .sub-subtitle {
+            font-family: 'ABC Arizona Flare Light', serif;
+            font-size: 14pt;
+            color: var(--color-soft-green);
+            font-style: italic;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 40px;
+            align-items: start;
+        }
+
+        .section {
+            background: rgba(0, 33, 64, 0.3);
+            border: 1px solid rgba(176, 221, 241, 0.15);
+            border-radius: 15px;
+            padding: 35px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-soft-green), var(--color-warm-yellow));
+        }
+
+        .section-title {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 20pt;
+            color: var(--color-warm-yellow);
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .zone-list {
+            list-style: none;
+            margin: 0;
+        }
+
+        .zone-item {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 13pt;
+            color: var(--color-off-white);
+            margin-bottom: 18px;
+            padding: 15px 20px;
+            background: rgba(176, 221, 241, 0.08);
+            border-radius: 8px;
+            border-left: 4px solid var(--color-soft-green);
+            line-height: 1.4;
+        }
+
+        .zone-item strong {
+            color: var(--color-light-blue);
+            font-size: 14pt;
+        }
+
+        .benefit-list {
+            list-style: none;
+            margin: 0;
+        }
+
+        .benefit-item {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 13pt;
+            color: var(--color-off-white);
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .benefit-item::before {
+            content: '•';
+            color: var(--color-soft-green);
+            position: absolute;
+            left: 0;
+            font-size: 16pt;
+            font-weight: bold;
+        }
+
+        .benefit-item strong {
+            color: var(--color-light-blue);
+        }
+
+        .footer {
+            padding: 40px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .confidential {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 9pt;
+            font-weight: normal;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(253, 251, 247, 0.6);
+        }
+
+        .slide-number {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 11pt;
+            font-weight: normal;
+            color: rgba(253, 251, 247, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <!-- Background elements -->
+        <div class="bg-texture"></div>
+        <div class="organic-shape shape-1"></div>
+        <div class="organic-shape shape-2"></div>
+        
+        <!-- Header area -->
+        <header class="header">
+        </header>
+        
+        <!-- Main content -->
+        <main class="main-content">
+            <div class="header-section">
+                <h1 class="headline">Land Use Optimization</h1>
+                <div class="subtitle">Strategic Land Allocation</div>
+                <div class="sub-subtitle">Balanced Ecosystem Approach - Beforest Case Study</div>
+            </div>
+            
+            <div class="content-grid">
+                <div class="section">
+                    <div class="section-title">Land Use Framework</div>
+                    <ul class="zone-list">
+                        <li class="zone-item">
+                            <strong>20-25% Nature Zone</strong><br>
+                            Undisturbed natural habitat preservation
+                        </li>
+                        <li class="zone-item">
+                            <strong>60-70% Combined Zone</strong><br>
+                            Regenerative agriculture and agroforestry
+                        </li>
+                        <li class="zone-item">
+                            <strong>15% Economic Zone</strong><br>
+                            Infrastructure, processing, renewable energy systems
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">Environmental Benefits</div>
+                    <ul class="benefit-list">
+                        <li class="benefit-item">
+                            <strong>Water Conservation</strong>: 21M litres saved over 3 years (Poomaale)
+                        </li>
+                        <li class="benefit-item">
+                            <strong>Chemical Reduction</strong>: 68 tonnes NPK/pesticides eliminated
+                        </li>
+                        <li class="benefit-item">
+                            <strong>Water Efficiency</strong>: 1000 litres saved per kg coffee produced
+                        </li>
+                        <li class="benefit-item">
+                            <strong>Biodiversity Enhancement</strong>: Abundant mammals, birds, reptiles
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer area -->
+        <footer class="footer">
+            <div class="confidential">PRIVATE AND CONFIDENTIAL</div>
+            <div class="slide-number">14</div>
+        </footer>
+    </div>
+</body>
+</html> 

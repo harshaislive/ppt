@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Fund - Fund Structure Details</title>
+    <style>
+        @font-face {
+            font-family: 'ABC Arizona Flare';
+            src: url('../fonts/ABCArizonaFlare-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Medium';
+            src: url('../fonts/ABCArizonaFlare-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Light';
+            src: url('../fonts/ABCArizonaFlare-Light.woff2') format('woff2');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Sans';
+            src: url('../fonts/ABCArizonaFlareSans-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            /* Primary Colors */
+            --color-dark-earth: #342e29;
+            --color-rich-red: #86312b;
+            --color-forest-green: #344736;
+            --color-deep-blue: #002140;
+            
+            /* Secondary & Accent Colors */
+            --color-dark-brown: #4b3c35;
+            --color-burnt-red: #9e3430;
+            --color-olive-green: #415c43;
+            --color-dark-blue: #00385e;
+            --color-warm-yellow: #ffc083;
+            --color-coral-orange: #ff774a;
+            --color-soft-green: #b8dc99;
+            --color-light-blue: #b0ddf1;
+            
+            /* Neutral Colors */
+            --color-off-white: #fdfbf7;
+            --color-charcoal: #51514d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background-color: var(--color-deep-blue);
+            color: var(--color-off-white);
+        }
+
+        .slide {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Background elements */
+        .bg-texture {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.035;
+            background-image: 
+                radial-gradient(var(--color-light-blue) 1px, transparent 1px),
+                radial-gradient(var(--color-warm-yellow) 1px, transparent 1px);
+            background-size: 40px 40px, 30px 30px;
+            background-position: 0 0, 20px 20px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .organic-shape {
+            position: absolute;
+            border: 2px solid rgba(184, 220, 153, 0.05);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .shape-1 {
+            width: 450px;
+            height: 450px;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            top: -200px;
+            right: -100px;
+            transform: rotate(45deg);
+            border-color: rgba(176, 221, 241, 0.05);
+        }
+
+        .shape-2 {
+            width: 350px;
+            height: 350px;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            bottom: -100px;
+            left: -100px;
+            transform: rotate(-25deg);
+            border-color: rgba(255, 192, 131, 0.05);
+        }
+
+        /* Content layout */
+        .header {
+            padding: 25px 60px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            position: relative;
+        }
+
+            height: 32px;
+        }
+
+
+        .page-title {
+            font-family: 'ABC Arizona Flare Light', serif;
+            font-size: 14pt;
+            font-weight: 300;
+            color: var(--color-off-white);
+            opacity: 0.9;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 60px;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .headline {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 32pt;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 15px;
+            color: var(--color-light-blue);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 24pt;
+            color: var(--color-warm-yellow);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .sub-subtitle {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 16pt;
+            color: var(--color-soft-green);
+            font-style: italic;
+        }
+
+        /* Premium Table styles */
+        .fund-table-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 15px;
+            background: rgba(0, 33, 64, 0.4);
+            border: 1px solid rgba(176, 221, 241, 0.2);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fund-table-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-warm-yellow), var(--color-coral-orange), var(--color-light-blue));
+        }
+
+        .fund-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .fund-table tr {
+            transition: background-color 0.2s ease;
+        }
+
+        .fund-table tr:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .fund-table tr:nth-child(odd) {
+            background-color: rgba(255, 255, 255, 0.01);
+        }
+
+        .fund-table tr:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .fund-table td {
+            padding: 16px 25px;
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 14pt;
+            font-weight: 300;
+            color: var(--color-off-white);
+            border-bottom: 1px solid rgba(176, 221, 241, 0.1);
+            line-height: 1.4;
+        }
+
+        .fund-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .fund-table td:first-child {
+            font-family: 'ABC Arizona Flare', serif;
+            font-weight: normal;
+            width: 45%;
+            border-right: 1px solid rgba(176, 221, 241, 0.15);
+            letter-spacing: 0.3px;
+            color: var(--color-warm-yellow);
+            opacity: 0.9;
+        }
+
+        .fund-table td:last-child {
+            font-family: 'ABC Arizona Flare Medium', serif;
+            font-weight: 500;
+            width: 55%;
+            color: var(--color-off-white);
+        }
+
+        /* Highlight colors for important values */
+        .highlight-warm-yellow {
+            color: var(--color-warm-yellow);
+            font-weight: 500;
+            text-shadow: 0 0 10px rgba(255, 192, 131, 0.2);
+            position: relative;
+            padding-left: 2px;
+        }
+        
+        .highlight-soft-green {
+            color: var(--color-soft-green);
+            font-weight: 500;
+            text-shadow: 0 0 10px rgba(184, 220, 153, 0.2);
+            position: relative;
+            padding-left: 2px;
+        }
+        
+        .highlight-light-blue {
+            color: var(--color-light-blue);
+            font-weight: 500;
+            text-shadow: 0 0 10px rgba(176, 221, 241, 0.2);
+            position: relative;
+            padding-left: 2px;
+        }
+        
+        .highlight-coral-orange {
+            color: var(--color-coral-orange);
+            font-weight: 500;
+            text-shadow: 0 0 10px rgba(255, 119, 74, 0.2);
+            position: relative;
+            padding-left: 2px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .confidential {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 9pt;
+            font-weight: normal;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(253, 251, 247, 0.6);
+        }
+
+        .slide-number {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 11pt;
+            font-weight: normal;
+            color: rgba(253, 251, 247, 0.6);
+        }
+
+        /* Add subtle animation for the page load */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fund-table-container {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .title {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <!-- Background elements -->
+        <div class="bg-texture"></div>
+        <div class="organic-shape shape-1"></div>
+        <div class="organic-shape shape-2"></div>
+        
+        <!-- Header area -->
+        <header class="header">
+            <div class="page-title">Investment Note</div>
+        </header>
+        
+        <!-- Main content -->
+        <main class="main-content">
+            <div class="header-section">
+                <div class="subtitle">GREEN FUND</div>
+                <h1 class="headline">Fund Structure Details</h1>
+                <div class="sub-subtitle">Core Fund Structure & Terms</div>
+            </div>
+            
+            <div class="fund-table-container">
+                <table class="fund-table">
+                    <tr>
+                        <td>Fund Details</td>
+                        <td>Specifications</td>
+                    </tr>
+                    <tr>
+                        <td>Fund Name</td>
+                        <td>Green Fund</td>
+                    </tr>
+                    <tr>
+                        <td>Fund Size</td>
+                        <td><span class="highlight-warm-yellow">INR 300 Crores</span></td>
+                    </tr>
+                    <tr>
+                        <td>Fund Tenure</td>
+                        <td><span class="highlight-light-blue">7 years + 2 years optional extension</span></td>
+                    </tr>
+                    <tr>
+                        <td>Min Investment</td>
+                        <td><span class="highlight-coral-orange">INR 5 Crores</span></td>
+                    </tr>
+                    <tr>
+                        <td>Capital Commitment</td>
+                        <td>100% upfront or 50% Upfront | 50% capital call</td>
+                    </tr>
+                    <tr>
+                        <td>Performance Fee</td>
+                        <td>25% - 35%</td>
+                    </tr>
+                    <tr>
+                        <td>Est. IRR</td>
+                        <td><span class="highlight-soft-green">10-15% p.a</span></td>
+                    </tr>
+                    <tr>
+                        <td>Management Fee</td>
+                        <td>2.5% p.a</td>
+                    </tr>
+                    <tr>
+                        <td>Fund Administrator / RTA</td>
+                        <td>Anthill Properties</td>
+                    </tr>
+                </table>
+            </div>
+        </main>
+        
+        <!-- Footer area -->
+        <footer class="footer">
+            <div class="confidential">PRIVATE AND CONFIDENTIAL</div>
+            <div class="slide-number">19</div>
+        </footer>
+    </div>
+</body>
+</html> 

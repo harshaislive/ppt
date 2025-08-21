@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beforest - Poomaale Collective Case Study</title>
+    <style>
+        @font-face {
+            font-family: 'ABC Arizona Flare';
+            src: url('../fonts/ABCArizonaFlare-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Medium';
+            src: url('../fonts/ABCArizonaFlare-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Light';
+            src: url('../fonts/ABCArizonaFlare-Light.woff2') format('woff2');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Sans';
+            src: url('../fonts/ABCArizonaFlareSans-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --color-deep-blue: #002140;
+            --color-light-blue: #b0ddf1;
+            --color-forest-green: #344736;
+            --color-warm-yellow: #ffc083;
+            --color-soft-green: #b8dc99;
+            --color-coral: #ff774a;
+            --color-off-white: #fdfbf7;
+            --color-charcoal: #51514d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background-color: var(--color-deep-blue);
+            color: var(--color-off-white);
+        }
+
+        .slide {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Background elements */
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('../images/slide_18.webp');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                rgba(0, 33, 64, 0.65),
+                rgba(0, 33, 64, 0.75)
+            );
+            z-index: 2;
+        }
+
+        .bg-texture {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.035;
+            background-image: 
+                radial-gradient(var(--color-light-blue) 1px, transparent 1px),
+                radial-gradient(var(--color-warm-yellow) 1px, transparent 1px);
+            background-size: 40px 40px, 30px 30px;
+            background-position: 0 0, 20px 20px;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        /* Content layout */
+        .header {
+            padding: 40px 60px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        .page-title {
+            font-family: 'ABC Arizona Flare Light', serif;
+            font-size: 16pt;
+            font-weight: 300;
+            color: var(--color-off-white);
+            opacity: 0.9;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 60px;
+            z-index: 10;
+        }
+
+        .title-section {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .subtitle {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 14pt;
+            font-weight: normal;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 15px;
+            color: var(--color-warm-yellow);
+        }
+
+        .title {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 32pt;
+            font-weight: normal;
+            margin-bottom: 15px;
+            color: var(--color-off-white);
+        }
+
+        .case-study-label {
+            font-family: 'ABC Arizona Flare Light', serif;
+            font-size: 16pt;
+            font-weight: 300;
+            margin-top: 15px;
+            color: var(--color-light-blue);
+            opacity: 0.9;
+        }
+
+        /* Four returns grid */
+        .transformation-stats {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+        }
+        
+        .four-returns-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        
+        .return-card {
+            background: rgba(0, 33, 64, 0.3);
+            border: 1px solid rgba(176, 221, 241, 0.2);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: left;
+            backdrop-filter: blur(5px);
+        }
+        
+        .return-number {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 24pt;
+            color: var(--color-warm-yellow);
+            margin-bottom: 10px;
+        }
+        
+        .return-title {
+            font-family: 'ABC Arizona Flare Medium', serif;
+            font-size: 16pt;
+            color: var(--color-light-blue);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .return-description {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 13pt;
+            color: var(--color-off-white);
+            line-height: 1.4;
+        }
+
+        .confidential-note {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 11pt;
+            color: var(--color-coral);
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .confidential {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 9pt;
+            font-weight: normal;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(253, 251, 247, 0.6);
+        }
+
+        .slide-number {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 11pt;
+            font-weight: normal;
+            color: rgba(253, 251, 247, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <!-- Background elements -->
+        <div class="bg-image"></div>
+        <div class="bg-overlay"></div>
+        <div class="bg-texture"></div>
+        
+        <!-- Header area -->
+        <header class="header">
+            <div class="page-title">Investment Note</div>
+        </header>
+        
+        <!-- Main content -->
+        <main class="main-content">
+            <div class="title-section">
+                <div class="subtitle">The Poomaaale Collective</div>
+                <h1 class="title">Case Study: 4 Returns</h1>
+                <div class="case-study-label">Demonstrating holistic regenerative impact</div>
+            </div>
+            
+            <div class="transformation-stats">
+                <div class="four-returns-grid">
+                    <div class="return-card">
+                        <div class="return-number">01</div>
+                        <div class="return-title">INSPIRATION CAPITAL</div>
+                        <div class="return-description">Sense of purpose in the staff and community towards protection of the stream and surrounding habitat. Poaching reduced to 0.</div>
+                    </div>
+                    
+                    <div class="return-card">
+                        <div class="return-number">02</div>
+                        <div class="return-title">SOCIAL CAPITAL</div>
+                        <div class="return-description">16 families directly and 20 families partially employed. Upskilling in waste management, food processing, hospitality, etc to the tune of 7cr.</div>
+                    </div>
+                    
+                    <div class="return-card">
+                        <div class="return-number">03</div>
+                        <div class="return-title">NATURAL CAPITAL</div>
+                        <div class="return-description">Pioneer species returning to landscape – small clawed otters, hornbills. Stream turned perennial. Soil depletion and erosion almost 0.</div>
+                    </div>
+                    
+                    <div class="return-card">
+                        <div class="return-number">04</div>
+                        <div class="return-title">FINANCIAL CAPITAL</div>
+                        <div class="return-description">(7 Acres): Initial investors had capital appreciation of around 40% along with seasonal revenue from produce.</div>
+                        <div class="confidential-note">*AND CONFIDENTIAL</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer area -->
+        <footer class="footer">
+            <div class="confidential">PRIVATE AND CONFIDENTIAL</div>
+            <div class="slide-number">18A</div>
+        </footer>
+    </div>
+</body>
+</html>

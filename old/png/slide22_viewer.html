@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beforest - Partner Profile</title>
+    <style>
+        @font-face {
+            font-family: 'ABC Arizona Flare';
+            src: url('../fonts/ABCArizonaFlare-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Medium';
+            src: url('../fonts/ABCArizonaFlare-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Light';
+            src: url('../fonts/ABCArizonaFlare-Light.woff2') format('woff2');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Sans';
+            src: url('../fonts/ABCArizonaFlareSans-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --color-deep-blue: #002140;
+            --color-light-blue: #b0ddf1;
+            --color-forest-green: #344736;
+            --color-rich-red: #86312b;
+            --color-warm-yellow: #ffc083;
+            --color-soft-green: #b8dc99;
+            --color-coral-orange: #ff774a;
+            --color-off-white: #fdfbf7;
+            --color-charcoal: #51514d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background-color: var(--color-rich-red);
+            color: var(--color-off-white);
+        }
+
+        .slide {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Background elements */
+        .bg-texture {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.04;
+            background-image: 
+                radial-gradient(var(--color-coral-orange) 1px, transparent 1px),
+                radial-gradient(var(--color-warm-yellow) 1px, transparent 1px);
+            background-size: 50px 50px, 35px 35px;
+            background-position: 0 0, 25px 25px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .curved-line {
+            position: absolute;
+            border: none;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.2;
+        }
+
+        .curved-line-1 {
+            top: 5%;
+            left: -120px;
+            width: 700px;
+            height: 350px;
+            border-radius: 50%;
+            border-top: 1px solid var(--color-coral-orange);
+            transform: rotate(15deg);
+        }
+
+        .curved-line-2 {
+            bottom: 8%;
+            right: -180px;
+            width: 800px;
+            height: 450px;
+            border-radius: 50%;
+            border-bottom: 1px solid var(--color-warm-yellow);
+            transform: rotate(-20deg);
+        }
+
+        .curved-line-3 {
+            bottom: 30%;
+            left: 10%;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border-left: 1px solid var(--color-off-white);
+            opacity: 0.15;
+        }
+
+        .organic-shape {
+            position: absolute;
+            border: 1px solid var(--color-warm-yellow);
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.08;
+        }
+
+        .shape-1 {
+            width: 600px;
+            height: 600px;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            top: -300px;
+            right: -200px;
+            transform: rotate(45deg);
+            border-color: var(--color-coral-orange);
+        }
+
+        .shape-2 {
+            width: 500px;
+            height: 500px;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            bottom: -200px;
+            left: -200px;
+            transform: rotate(-25deg);
+            border-color: var(--color-off-white);
+        }
+
+        /* Content layout */
+        .header {
+            padding: 40px 60px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        .logo-container {
+            height: 40px;
+        }
+
+        .logo-image {
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .page-title {
+            font-family: 'ABC Arizona Flare Light', serif;
+            font-size: 16pt;
+            font-weight: 300;
+            color: var(--color-off-white);
+            opacity: 0.9;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 60px;
+            z-index: 10;
+        }
+
+        .profile-container {
+            display: flex;
+            width: 100%;
+            max-width: 1000px;
+            height: 80%;
+        }
+
+        .profile-image {
+            flex: 0 0 36%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            margin-right: 30px;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-content {
+            flex: 0 0 58%;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 50px 50px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .role {
+            font-family: 'ABC Arizona Flare Light', serif;
+            font-size: 14pt;
+            text-transform: uppercase;
+            color: var(--color-coral-orange);
+            margin-bottom: 15px;
+            letter-spacing: 0.15em;
+            opacity: 0.95;
+            position: relative;
+            display: inline-block;
+        }
+
+        .role::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 1px;
+            background-color: var(--color-coral-orange);
+            opacity: 0.7;
+        }
+
+        .name {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 31pt;
+            font-weight: normal;
+            margin-bottom: 25px;
+            color: var(--color-off-white);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .bio {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 11.5pt;
+            line-height: 1.5;
+            color: var(--color-off-white);
+            margin-bottom: 18px;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .highlight {
+            color: var(--color-coral-orange);
+            font-weight: normal;
+        }
+
+        .fun-fact {
+            margin-top: 0;
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 11pt;
+            font-style: italic;
+            color: var(--color-off-white);
+            opacity: 0.9;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .fun-fact-label {
+            color: var(--color-coral-orange);
+            font-weight: normal;
+            font-style: normal;
+            margin-right: 5px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        .slide-number {
+            font-family: 'ABC Arizona Flare Light', serif;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        .footer-text {
+            font-family: 'ABC Arizona Flare Light', serif;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <!-- Background elements -->
+        <div class="bg-texture"></div>
+        <div class="curved-line curved-line-1"></div>
+        <div class="curved-line curved-line-2"></div>
+        <div class="curved-line curved-line-3"></div>
+        <div class="organic-shape shape-1"></div>
+        <div class="organic-shape shape-2"></div>
+
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-container">
+                <img src="../images/logos/beforest_logo.webp" alt="Beforest Logo" class="logo-image">
+            </div>
+            <div class="page-title">Investment Note</div>
+        </header>
+
+        <!-- Main content -->
+        <main class="main-content">
+            <div class="profile-container">
+                <div class="profile-image">
+                    <img src="../images/slide_28.webp" alt="Suresh Daggubati">
+                </div>
+                <div class="profile-content">
+                    <div class="role">MD, SURESH PRODUCTIONS</div>
+                    <h1 class="name">SURESH DAGGUBATI</h1>
+                    <p class="bio">
+                        Suresh D. was instrumental in moving the Telugu film industry to Hyderabad back in the 80's. He established <span class="highlight">Suresh Productions</span>, one of India's largest integrated production powerhouses as producers, distributors, exhibitors, digital post facilities, animation, and gaming studios. Today, SP has around <span class="highlight">400 theatres</span> in the country & has exhibited over 1200 blockbuster films. He also has a keen interest in other industries and has expanded into ventures such as infrastructure & real estate development, materials, and food processing.
+                    </p>
+                    <div class="fun-fact">
+                        <span class="fun-fact-label">Fun Fact:</span> Suresh Productions produces 5-7 films every year with a hit ratio of 80%.
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="slide-number">28</div>
+            <div class="footer-text">Beforest Green Fund</div>
+        </footer>
+    </div>
+</body>
+</html> 

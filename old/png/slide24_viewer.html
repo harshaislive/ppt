@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beforest - Investor Qualifications</title>
+    <style>
+        @font-face {
+            font-family: 'ABC Arizona Flare';
+            src: url('../fonts/ABCArizonaFlare-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Medium';
+            src: url('../fonts/ABCArizonaFlare-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Light';
+            src: url('../fonts/ABCArizonaFlare-Light.woff2') format('woff2');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Sans';
+            src: url('../fonts/ABCArizonaFlareSans-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --color-deep-blue: #002140;
+            --color-light-blue: #b0ddf1;
+            --color-forest-green: #344736;
+            --color-rich-red: #86312b;
+            --color-warm-yellow: #ffc083;
+            --color-soft-green: #b8dc99;
+            --color-coral-orange: #ff774a;
+            --color-off-white: #fdfbf7;
+            --color-charcoal: #51514d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background-color: var(--color-deep-blue);
+            color: var(--color-off-white);
+        }
+
+        .slide {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Background elements */
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('../images/slide_24.webp');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                rgba(0, 33, 64, 0.7),
+                rgba(52, 71, 54, 0.6)
+            );
+            z-index: 2;
+        }
+
+        .bg-texture {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.04;
+            background-image: 
+                radial-gradient(var(--color-warm-yellow) 1px, transparent 1px),
+                radial-gradient(var(--color-soft-green) 1px, transparent 1px);
+            background-size: 50px 50px, 35px 35px;
+            background-position: 0 0, 25px 25px;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        /* Content layout */
+        .header {
+            padding: 40px 60px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        .page-title {
+            font-family: 'ABC Arizona Flare Light', serif;
+            font-size: 14pt;
+            font-weight: 300;
+            color: var(--color-off-white);
+            opacity: 0.9;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 80px;
+            z-index: 10;
+        }
+
+        .title-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .main-title {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 36pt;
+            font-weight: normal;
+            margin-bottom: 20px;
+            color: var(--color-off-white);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-family: 'ABC Arizona Flare Light', serif;
+            font-size: 18pt;
+            font-weight: 300;
+            color: var(--color-warm-yellow);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .qualification-section {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .section-title {
+            font-family: 'ABC Arizona Flare Medium', serif;
+            font-size: 20pt;
+            color: var(--color-light-blue);
+            margin-bottom: 40px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .qualifications-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .qualification-item {
+            background: rgba(0, 33, 64, 0.3);
+            border: 1px solid rgba(176, 221, 241, 0.2);
+            border-radius: 12px;
+            padding: 25px;
+            backdrop-filter: blur(5px);
+            border-left: 4px solid var(--color-warm-yellow);
+        }
+
+        .qualification-title {
+            font-family: 'ABC Arizona Flare Medium', serif;
+            font-size: 16pt;
+            color: var(--color-warm-yellow);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .qualification-title::before {
+            content: '•';
+            color: var(--color-coral-orange);
+            font-size: 20pt;
+            margin-right: 10px;
+        }
+
+        .qualification-description {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 14pt;
+            color: var(--color-off-white);
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .confidential {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 9pt;
+            font-weight: normal;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(253, 251, 247, 0.6);
+        }
+
+        .slide-number {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 11pt;
+            font-weight: normal;
+            color: rgba(253, 251, 247, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <!-- Background elements -->
+        <div class="bg-image"></div>
+        <div class="bg-overlay"></div>
+        <div class="bg-texture"></div>
+        
+        <!-- Header area -->
+        <header class="header">
+            <div class="page-title">Investment Criteria</div>
+        </header>
+        
+        <!-- Main content -->
+        <main class="main-content">
+            <div class="title-section">
+                <h1 class="main-title">Investor Qualifications</h1>
+                <div class="subtitle">Mission-Driven Capital Requirements</div>
+            </div>
+            
+            <div class="qualification-section">
+                <div class="section-title">Investor Qualification Criteria</div>
+                
+                <div class="qualifications-list">
+                    <div class="qualification-item">
+                        <div class="qualification-title">Agricultural Interest</div>
+                        <div class="qualification-description">Understanding of regenerative farming</div>
+                    </div>
+                    
+                    <div class="qualification-item">
+                        <div class="qualification-title">Environmental Commitment</div>
+                        <div class="qualification-description">Support for land restoration goals</div>
+                    </div>
+                    
+                    <div class="qualification-item">
+                        <div class="qualification-title">Long-Term Capital</div>
+                        <div class="qualification-description">7 year commitment minimum</div>
+                    </div>
+                    
+                    <div class="qualification-item">
+                        <div class="qualification-title">Local Engagement</div>
+                        <div class="qualification-description">Willingness to participate in boosting circular economies</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer area -->
+        <footer class="footer">
+            <div class="confidential">PRIVATE AND CONFIDENTIAL</div>
+            <div class="slide-number">24</div>
+        </footer>
+    </div>
+</body>
+</html>

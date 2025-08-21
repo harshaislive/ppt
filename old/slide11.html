@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Fund - Regenerative Economy - The Beforest Case Study</title>
+    <style>
+        @font-face {
+            font-family: 'ABC Arizona Flare';
+            src: url('fonts/ABCArizonaFlare-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Medium';
+            src: url('fonts/ABCArizonaFlare-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Light';
+            src: url('fonts/ABCArizonaFlare-Light.woff2') format('woff2');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Sans';
+            src: url('fonts/ABCArizonaFlareSans-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --color-deep-blue: #002140;
+            --color-light-blue: #b0ddf1;
+            --color-forest-green: #344736;
+            --color-warm-yellow: #ffc083;
+            --color-soft-green: #b8dc99;
+            --color-coral: #ff774a;
+            --color-off-white: #fdfbf7;
+            --color-charcoal: #51514d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background-color: var(--color-forest-green);
+            color: var(--color-off-white);
+        }
+
+        .slide {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Background elements */
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/slide_11.webp');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+            filter: saturate(1.2);
+        }
+
+        .bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                       rgba(52, 71, 54, 0.4) 0%, 
+                       rgba(52, 71, 54, 0.3) 100%);
+            z-index: 2;
+        }
+
+        .bg-texture {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            background-image: 
+                radial-gradient(var(--color-soft-green) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .leaf-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23b8dc99" opacity="0.05" d="M30,10C15,10,5,25,5,40c0,15,25,50,25,50s25-35,25-50C55,25,45,10,30,10z"/></svg>');
+            background-size: 100px 100px;
+            background-position: 0 0;
+            z-index: 3;
+            opacity: 0.07;
+        }
+
+        .organic-shape {
+            position: absolute;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .shape-1 {
+            width: 1000px;
+            height: 1000px;
+            border-radius: 71% 29% 65% 35% / 37% 59% 41% 63%;
+            border: 1px solid rgba(184, 220, 153, 0.05);
+            top: -550px;
+            left: -200px;
+            transform: rotate(30deg);
+        }
+
+        .shape-2 {
+            width: 800px;
+            height: 800px;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            border: 1px solid rgba(255, 192, 131, 0.04);
+            bottom: -400px;
+            right: -300px;
+            transform: rotate(-15deg);
+        }
+
+        .animate-snake {
+            position: absolute;
+            z-index: 3;
+            width: 200px;
+            height: 200px;
+            border-radius: 30% 70% 50% 50% / 60% 40% 60% 40%;
+            border: 1px solid rgba(184, 220, 153, 0.1);
+            filter: blur(1px);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .snake-1 {
+            top: 20%;
+            right: 15%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 0s;
+        }
+
+        .snake-2 {
+            bottom: 25%;
+            left: 10%;
+            width: 200px;
+            height: 200px;
+            animation-delay: -5s;
+            border-color: rgba(255, 192, 131, 0.08);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-15px) rotate(5deg);
+            }
+            50% {
+                transform: translateY(0) rotate(0deg);
+            }
+            75% {
+                transform: translateY(15px) rotate(-5deg);
+            }
+        }
+
+        /* Content layout */
+        .header {
+            padding: 40px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            position: relative;
+        }
+
+
+        .main-content {
+            flex: 1;
+            display: flex; 
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+            padding: 40px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 50px;
+            align-items: start;
+        }
+
+        .company-name {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 16pt;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--color-warm-yellow);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .headline {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 36pt;
+            text-transform: uppercase;
+            line-height: 1.1;
+            color: var(--color-off-white);
+            text-shadow: 0 2px 15px rgba(0,0,0,0.2);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .decorative-line {
+            width: 120px;
+            height: 2px;
+            background: rgba(184, 220, 153, 0.7);
+            margin: 10px auto 40px;
+        }
+
+        .subtitle {
+            font-family: 'ABC Arizona Flare Medium', serif;
+            font-size: 18pt;
+            color: var(--color-soft-green);
+            letter-spacing: 0.1em;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .section {
+            background: rgba(52, 71, 54, 0.4);
+            border: 1px solid rgba(184, 220, 153, 0.2);
+            border-radius: 12px;
+            padding: 30px;
+            backdrop-filter: blur(8px);
+        }
+
+        .section-title {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 20pt;
+            color: var(--color-warm-yellow);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .info-list {
+            list-style: none;
+            margin: 0;
+        }
+
+        .info-item {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 13pt;
+            color: var(--color-off-white);
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        .info-item::before {
+            content: '';
+            color: var(--color-soft-green);
+            position: absolute;
+            left: 0;
+            font-size: 16pt;
+        }
+
+        .info-item strong {
+            color: var(--color-light-blue);
+        }
+
+        .footer {
+            padding: 40px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .confidential {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 10pt;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(253, 251, 247, 0.6);
+        }
+
+        .slide-number {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 12pt;
+            color: rgba(253, 251, 247, 0.6);
+        }
+
+        .image-container {
+            display: none; /* Hide the separate image container */
+        }
+
+        .approach-image-frame {
+            position: relative;
+            width: 85%;
+            height: 80%;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            transform: perspective(1000px) rotateY(-8deg);
+            transition: all 0.5s ease;
+        }
+
+        .approach-image-frame::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            z-index: 2;
+        }
+
+        .approach-image-frame::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(
+                135deg,
+                rgba(184, 220, 153, 0.2) 0%,
+                rgba(52, 71, 54, 0.1) 50%,
+                rgba(184, 220, 153, 0) 100%
+            );
+            border-radius: 35px;
+            z-index: -1;
+            filter: blur(8px);
+        }
+
+        .approach-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/slide_11.webp');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                180deg,
+                rgba(52, 71, 54, 0) 0%,
+                rgba(52, 71, 54, 0.1) 70%,
+                rgba(52, 71, 54, 0.2) 100%
+            );
+            z-index: 2;
+        }
+
+        .image-leaf {
+            position: absolute;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23b8dc99" opacity="0.3" d="M30,10C15,10,5,25,5,40c0,15,25,50,25,50s25-35,25-50C55,25,45,10,30,10z"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 3;
+        }
+
+        .leaf-1 {
+            width: 80px;
+            height: 80px;
+            top: 20px;
+            right: 30px;
+            transform: rotate(45deg);
+            opacity: 0.2;
+        }
+
+        .leaf-2 {
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            left: 30px;
+            transform: rotate(-25deg);
+            opacity: 0.15;
+        }
+
+        .snake-highlight {
+            position: absolute;
+            width: 40%;
+            height: 40%;
+            top: 30%;
+            right: 10%;
+            border-radius: 50%;
+            background: radial-gradient(
+                circle,
+                rgba(184, 220, 153, 0.15) 0%,
+                rgba(184, 220, 153, 0) 70%
+            );
+            filter: blur(15px);
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <!-- Background elements -->
+        <div class="bg-image"></div>
+        <div class="bg-overlay"></div>
+        <div class="bg-texture"></div>
+        <div class="leaf-pattern"></div>
+        <div class="organic-shape shape-1"></div>
+        <div class="organic-shape shape-2"></div>
+        <div class="animate-snake snake-1"></div>
+        <div class="animate-snake snake-2"></div>
+        
+        <!-- Header area -->
+        <header class="header">
+            
+        </header>
+        
+        <!-- Main content -->
+        <main class="main-content">
+            <div class="header-section">
+                <h1 class="headline">Regenerative Economy - The Beforest Case Study</h1>
+                <div class="subtitle">Proven Regenerative Landscape Management Model</div>
+            </div>
+            
+            <div class="content-grid">
+                <div class="section">
+                    <div class="section-title">Company Overview</div>
+                    <ul class="info-list">
+                        <li class="info-item">
+                            <strong>Founded</strong>: 2018 (Indian startup)
+                        </li>
+                        <li class="info-item">
+                            <strong>Scale</strong>: ~1000 acres across 6 collectives
+                        </li>
+                        <li class="info-item">
+                            <strong>Community</strong>: 200+ families, 160 farmers employed
+                        </li>
+                        <li class="info-item">
+                            <strong>Business Model</strong>: 25% revenue share, collective ownership
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+        </main>
+        
+        <!-- Footer area -->
+        <footer class="footer">
+            <div class="confidential">PRIVATE AND CONFIDENTIAL</div>
+            <div class="slide-number">11</div>
+        </footer>
+    </div>
+</body>
+</html> 

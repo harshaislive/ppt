@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Fund - Flow of 4 Returns</title>
+    <style>
+        @font-face {
+            font-family: 'ABC Arizona Flare';
+            src: url('../fonts/ABCArizonaFlare-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Medium';
+            src: url('../fonts/ABCArizonaFlare-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Light';
+            src: url('../fonts/ABCArizonaFlare-Light.woff2') format('woff2');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Sans';
+            src: url('../fonts/ABCArizonaFlareSans-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            /* Primary Brand Colors */
+            --color-dark-earth: #342e29;
+            --color-rich-red: #86312b;
+            --color-forest-green: #344736;
+            --color-deep-blue: #002140;
+            
+            /* Secondary & Accent Colors */
+            --color-dark-brown: #4b3c35;
+            --color-burnt-red: #9e3430;
+            --color-olive-green: #415c43;
+            --color-dark-blue-secondary: #00385e;
+            --color-warm-yellow: #ffc083;
+            --color-coral: #ff774a;
+            --color-soft-green: #b8dc99;
+            --color-light-blue: #b0ddf1;
+            
+            /* Neutral Colors */
+            --color-black: #000000;
+            --color-charcoal: #51514d;
+            --color-soft-gray: #e7e4df;
+            --color-off-white: #fdfbf7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background-color: var(--color-deep-blue);
+            color: var(--color-off-white);
+        }
+
+        .slide {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Background elements */
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('../images/slide_6.webp');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 33, 64, 0.65);
+            z-index: 2;
+        }
+
+        .bg-texture {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            background-image: 
+                linear-gradient(45deg, var(--color-light-blue) 1px, transparent 1px),
+                linear-gradient(-45deg, var(--color-light-blue) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .organic-shape {
+            position: absolute;
+            border: 2px solid rgba(176, 221, 241, 0.05);
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .shape-1 {
+            width: 850px;
+            height: 850px;
+            border-radius: 70% 30% 50% 50% / 50% 50% 50% 50%;
+            top: -400px;
+            right: -200px;
+            transform: rotate(30deg);
+        }
+
+        .shape-2 {
+            width: 600px;
+            height: 600px;
+            border-radius: 60% 40% 50% 50% / 40% 60% 50% 50%;
+            bottom: -300px;
+            left: -150px;
+            transform: rotate(-20deg);
+            border-color: rgba(255, 192, 131, 0.05);
+        }
+
+        /* Content layout */
+        .header {
+            padding: 40px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            position: relative;
+        }
+
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+            z-index: 10;
+            padding: 0 60px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .headline {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 34pt;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 40px;
+            color: var(--color-off-white);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            position: relative;
+            display: inline-block;
+            align-self: center;
+        }
+
+        .headline::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--color-warm-yellow), transparent);
+        }
+
+        .returns-list {
+            list-style-type: none;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            max-width: 900px;
+            align-self: center;
+        }
+
+        .return-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .return-marker {
+            min-width: 3px;
+            height: 100%;
+            border-radius: 2px;
+        }
+
+        .return-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .return-title {
+            font-family: 'ABC Arizona Flare Medium', serif;
+            font-size: 14pt;
+            margin-bottom: 8px;
+        }
+
+        .return-description {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 13pt;
+            line-height: 1.6;
+            color: rgba(253, 251, 247, 0.9);
+        }
+
+        /* Color coding for each return */
+        .return-item:nth-child(1) .return-marker {
+            background-color: var(--color-warm-yellow);
+        }
+        
+        .return-item:nth-child(1) .return-title {
+            color: var(--color-warm-yellow);
+        }
+
+        .return-item:nth-child(2) .return-marker {
+            background-color: var(--color-coral);
+        }
+        
+        .return-item:nth-child(2) .return-title {
+            color: var(--color-coral);
+        }
+
+        .return-item:nth-child(3) .return-marker {
+            background-color: var(--color-soft-green);
+        }
+        
+        .return-item:nth-child(3) .return-title {
+            color: var(--color-soft-green);
+        }
+
+        .return-item:nth-child(4) .return-marker {
+            background-color: var(--color-light-blue);
+        }
+        
+        .section-title {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 18pt;
+            color: var(--color-warm-yellow);
+            margin: 25px 0 15px 0;
+            text-transform: uppercase;
+        }
+
+        .market-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .market-item {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 13pt;
+            color: var(--color-off-white);
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .market-item::before {
+            content: '•';
+            color: var(--color-soft-green);
+            position: absolute;
+            left: 0;
+        }
+
+        .market-item strong {
+            color: var(--color-light-blue);
+        }
+
+        .footer {
+            padding: 40px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .confidential {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 10pt;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(253, 251, 247, 0.6);
+        }
+
+        .slide-number {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 12pt;
+            color: rgba(253, 251, 247, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <!-- Background elements -->
+        <div class="bg-image"></div>
+        <div class="bg-overlay"></div>
+        <div class="bg-texture"></div>
+        <div class="organic-shape shape-1"></div>
+        <div class="organic-shape shape-2"></div>
+        
+        <!-- Header area -->
+        <header class="header">
+            
+        </header>
+        
+        <!-- Main content -->
+        <main class="main-content">
+            <h1 class="headline">Market Opportunity</h1>
+            <div class="subtitle">Global Regenerative Agriculture Investment Market</div>
+            
+            <div class="section-title">Cost of Commons Value Framework</div>
+            <ul class="market-list">
+                <li class="market-item">
+                    <strong>Cost of Commons per Acre</strong>: The hidden cost we're freeing up from day-to-day functioning
+                </li>
+                <li class="market-item">
+                    <strong>Water Access Recovery</strong>: 700,000 litres per 1% soil carbon increase per acre
+                </li>
+                <li class="market-item">
+                    <strong>Chemical Reduction</strong>: 68 tonnes NPK/year per restored landscape
+                </li>
+                <li class="market-item">
+                    <strong>Carbon Sequestration</strong>: Each 1% soil carbon increase sequesters 40+ years of emissions
+                </li>
+                <li class="market-item">
+                    <strong>Operational Cost Savings</strong>: Reduced water procurement, chemical inputs, and soil management
+                </li>
+                <li class="market-item">
+                    <strong>Financial Returns</strong>: 300% returns from regenerated farmland productivity gains
+                </li>
+            </ul>
+            
+        </main>
+        
+        <!-- Footer area -->
+        <footer class="footer">
+            <div class="confidential">PRIVATE AND CONFIDENTIAL</div>
+            <div class="slide-number">06</div>
+        </footer>
+    </div>
+</body>
+</html> 

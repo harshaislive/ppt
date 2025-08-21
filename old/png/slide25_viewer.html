@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beforest - Call to Action</title>
+    <style>
+        @font-face {
+            font-family: 'ABC Arizona Flare';
+            src: url('../fonts/ABCArizonaFlare-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Medium';
+            src: url('../fonts/ABCArizonaFlare-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Light';
+            src: url('../fonts/ABCArizonaFlare-Light.woff2') format('woff2');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Arizona Flare Sans';
+            src: url('../fonts/ABCArizonaFlareSans-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --color-deep-blue: #002140;
+            --color-light-blue: #b0ddf1;
+            --color-forest-green: #344736;
+            --color-rich-red: #86312b;
+            --color-warm-yellow: #ffc083;
+            --color-soft-green: #b8dc99;
+            --color-coral-orange: #ff774a;
+            --color-off-white: #fdfbf7;
+            --color-charcoal: #51514d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background-color: var(--color-deep-blue);
+            color: var(--color-off-white);
+        }
+
+        .slide {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Background elements */
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('../images/slide_25.webp');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                rgba(0, 33, 64, 0.75),
+                rgba(52, 71, 54, 0.7)
+            );
+            z-index: 2;
+        }
+
+        .bg-texture {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.04;
+            background-image: 
+                radial-gradient(var(--color-warm-yellow) 1px, transparent 1px),
+                radial-gradient(var(--color-coral-orange) 1px, transparent 1px);
+            background-size: 60px 60px, 40px 40px;
+            background-position: 0 0, 30px 30px;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        /* Content layout */
+        .header {
+            padding: 40px 60px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        .page-title {
+            font-family: 'ABC Arizona Flare Light', serif;
+            font-size: 14pt;
+            font-weight: 300;
+            color: var(--color-off-white);
+            opacity: 0.9;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 80px;
+            z-index: 10;
+        }
+
+        .title-section {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .main-title {
+            font-family: 'ABC Arizona Flare', serif;
+            font-size: 36pt;
+            font-weight: normal;
+            margin-bottom: 15px;
+            color: var(--color-off-white);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-family: 'ABC Arizona Flare Light', serif;
+            font-size: 18pt;
+            font-weight: 300;
+            color: var(--color-warm-yellow);
+            margin-bottom: 10px;
+        }
+
+        .call-to-action {
+            font-family: 'ABC Arizona Flare Medium', serif;
+            font-size: 20pt;
+            color: var(--color-coral-orange);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .opportunity-section {
+            width: 100%;
+            max-width: 900px;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-family: 'ABC Arizona Flare Medium', serif;
+            font-size: 18pt;
+            color: var(--color-light-blue);
+            margin-bottom: 30px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .opportunity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .opportunity-item {
+            background: rgba(0, 33, 64, 0.3);
+            border: 1px solid rgba(176, 221, 241, 0.2);
+            border-radius: 8px;
+            padding: 20px 25px;
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            border-left: 4px solid var(--color-soft-green);
+        }
+
+        .checkmark {
+            color: var(--color-soft-green);
+            font-size: 18pt;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .opportunity-title {
+            font-family: 'ABC Arizona Flare Medium', serif;
+            font-size: 16pt;
+            color: var(--color-warm-yellow);
+            margin-right: 15px;
+        }
+
+        .opportunity-description {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 14pt;
+            color: var(--color-off-white);
+            line-height: 1.4;
+        }
+
+        .contact-section {
+            background: rgba(0, 33, 64, 0.4);
+            border: 2px solid rgba(255, 192, 131, 0.3);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .contact-title {
+            font-family: 'ABC Arizona Flare Medium', serif;
+            font-size: 16pt;
+            color: var(--color-warm-yellow);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .contact-description {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 14pt;
+            color: var(--color-off-white);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .confidential {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 9pt;
+            font-weight: normal;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(253, 251, 247, 0.6);
+        }
+
+        .slide-number {
+            font-family: 'ABC Arizona Flare Sans', sans-serif;
+            font-size: 11pt;
+            font-weight: normal;
+            color: rgba(253, 251, 247, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <!-- Background elements -->
+        <div class="bg-image"></div>
+        <div class="bg-overlay"></div>
+        <div class="bg-texture"></div>
+        
+        <!-- Header area -->
+        <header class="header">
+            <div class="page-title">Investment Invitation</div>
+        </header>
+        
+        <!-- Main content -->
+        <main class="main-content">
+            <div class="title-section">
+                <h1 class="main-title">Call to Action & Next Steps</h1>
+                <div class="subtitle">Partnership Invitation</div>
+                <div class="call-to-action">Join the Regenerative Revolution</div>
+            </div>
+            
+            <div class="opportunity-section">
+                <div class="section-title">Investment Opportunity Summary</div>
+                
+                <div class="opportunity-list">
+                    <div class="opportunity-item">
+                        <span class="checkmark">✓</span>
+                        <span class="opportunity-title">Proven Model:</span>
+                        <span class="opportunity-description">Expansion around established regenerative landscapes</span>
+                    </div>
+                    
+                    <div class="opportunity-item">
+                        <span class="checkmark">✓</span>
+                        <span class="opportunity-title">Regulatory Ready:</span>
+                        <span class="opportunity-description">2025 compliance framework positioned</span>
+                    </div>
+                    
+                    <div class="opportunity-item">
+                        <span class="checkmark">✓</span>
+                        <span class="opportunity-title">Unique Capabilities:</span>
+                        <span class="opportunity-description">Eco-system of experts</span>
+                    </div>
+                </div>
+                
+                <div class="contact-section">
+                    <div class="contact-title">Contact</div>
+                    <div class="contact-description">Investment team ready for institutional investor engagement</div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer area -->
+        <footer class="footer">
+            <div class="confidential">PRIVATE AND CONFIDENTIAL</div>
+            <div class="slide-number">25</div>
+        </footer>
+    </div>
+</body>
+</html>
