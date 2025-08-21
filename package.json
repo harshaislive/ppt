@@ -1,0 +1,23 @@
+{
+  "name": "ai-green-fund-presentation",
+  "version": "1.0.0",
+  "description": "AI Green Fund presentation with PDF export",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "puppeteer": "^21.0.0",
+    "cors": "^2.8.5",
+    "path": "^0.12.7",
+    "pdf-lib": "^1.17.1"
+  },
+  "keywords": ["presentation", "pdf", "green-fund"],
+  "author": "harshaislive",
+  "license": "MIT"
+}
