@@ -13,7 +13,11 @@
   },
   "dependencies": {
     "express": "^4.18.2",
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "puppeteer-core": "^21.0.0",
+    "chrome-aws-lambda": "^10.1.0",
+    "pdf-lib": "^1.17.1",
+    "sharp": "^0.32.6"
   },
   "keywords": ["presentation", "pdf", "green-fund"],
   "author": "harshaislive",

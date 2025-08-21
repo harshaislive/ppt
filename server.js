@@ -2,6 +2,10 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs').promises;
 const cors = require('cors');
+const puppeteer = require('puppeteer-core');
+const chromium = require('chrome-aws-lambda');
+const { PDFDocument } = require('pdf-lib');
+const sharp = require('sharp');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,9 +22,9 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Simple PDF generation - creates a print-ready page
+// Screenshot-based PDF generation
 app.get('/generate-pdf', async (req, res) => {
-    console.log('Creating print-ready PDF page...');
+    console.log('Creating PDF from screenshots...');
     
     try {
         // Get all slide files
@@ -39,259 +43,129 @@ app.get('/generate-pdf', async (req, res) => {
                 return getSlideNumber(a) - getSlideNumber(b);
             });
 
-        // Create a comprehensive PDF-ready page that preserves desktop browser appearance
-        const pdfHtml = `
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>AI Green Fund - Complete Presentation</title>
-    <style>
-        /* Desktop browser dimensions for PDF - 1920x1080 */
-        @page {
-            size: 1920px 1080px;
-            margin: 0;
+        // Create screenshots directory if it doesn't exist
+        const screenshotsDir = path.join(__dirname, 'screenshots');
+        try {
+            await fs.mkdir(screenshotsDir);
+        } catch (err) {
+            if (err.code !== 'EEXIST') throw err;
         }
-        
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            width: 1920px;
-        }
-        
-        .pdf-header {
-            background: #002140;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .instructions {
-            background: #e8f4ff;
-            border: 2px solid #0066cc;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 20px;
-            text-align: center;
-        }
-        
-        .print-btn {
-            background: #0066cc;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 18px;
-            margin: 10px;
-        }
-        
-        .print-btn:hover {
-            background: #0052a3;
-        }
-        
-        /* Each slide container matches desktop browser viewport exactly */
-        .slide-container {
-            page-break-after: always;
-            page-break-inside: avoid;
-            width: 1920px;
-            height: 1080px;
-            position: relative;
-            overflow: hidden;
-            display: block;
-            background: white;
-        }
-        
-        .slide-container:last-child {
-            page-break-after: auto;
-        }
-        
-        .slide-frame {
-            width: 1920px;
-            height: 1080px;
-            border: none;
-            display: block;
-            transform: scale(1);
-            transform-origin: top left;
-        }
-        
-        .slide-number {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 3px;
-            font-size: 14px;
-            z-index: 1000;
-        }
-        
-        .loading-message {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            z-index: 9999;
-        }
-        
-        /* Print styles to preserve desktop appearance */
-        @media print {
-            .pdf-header,
-            .instructions,
-            .slide-number { 
-                display: none !important; 
-            }
-            
-            body {
-                width: 1920px;
-                margin: 0;
-                padding: 0;
-            }
-            
-            .slide-container {
-                margin: 0;
-                padding: 0;
-                width: 1920px;
-                height: 1080px;
-                page-break-after: always;
-                page-break-inside: avoid;
-                display: block;
-            }
-            
-            .slide-frame {
-                width: 1920px;
-                height: 1080px;
-                border: none;
-                margin: 0;
-                padding: 0;
-                transform: scale(1);
-                display: block;
-            }
-            
-            .loading-message {
-                display: none !important;
-            }
-        }
-        
-        /* Screen styles for preview */
-        @media screen {
-            .slide-container {
-                margin: 20px auto;
-                border: 2px solid #ccc;
-                border-radius: 8px;
-                overflow: hidden;
-                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-                transform: scale(0.5);
-                transform-origin: center top;
-            }
-            
-            body {
-                width: auto;
-                background: #f5f5f5;
-                padding: 20px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="pdf-header">
-        <h1>🌱 AI Green Fund - Complete Presentation</h1>
-        <p>All ${slideFiles.length} slides ready for PDF export</p>
-    </div>
-    
-    <div class="instructions">
-        <h2>📄 Create PDF Instructions</h2>
-        <p><strong>Step 1:</strong> Click the button below to start printing</p>
-        <button class="print-btn" onclick="window.print()">🖨️ Print to PDF</button>
-        
-        <p><strong>Step 2:</strong> In the print dialog:</p>
-        <ul style="text-align: left; max-width: 600px; margin: 0 auto;">
-            <li>Select <strong>"Save as PDF"</strong> as destination</li>
-            <li>Choose <strong>"More settings"</strong></li>
-            <li><strong>IMPORTANT:</strong> Set paper size to <strong>"Custom"</strong></li>
-            <li>Enter dimensions: <strong>Width: 1920px, Height: 1080px</strong></li>
-            <li>Or select <strong>"Fit to page"</strong> if custom size not available</li>
-            <li>Set margins to <strong>"None"</strong></li>
-            <li>Ensure <strong>"Background graphics"</strong> is enabled</li>
-        </ul>
-        
-        <p><strong>Step 3:</strong> Click <strong>"Save"</strong> to download your PDF!</p>
-        
-        <div style="margin-top: 20px; font-size: 14px; color: #666;">
-            <p><strong>📏 Desktop View:</strong> Each slide will appear exactly as it looks in full desktop browser (1920x1080)</p>
-            <p><strong>⏳ Loading:</strong> Wait for all slides to load before printing (about 10-15 seconds)</p>
-            <p><strong>🖥️ Preview:</strong> On screen, slides are scaled down 50% for easier viewing, but PDF will be full size</p>
-        </div>
-    </div>
-    
-    <div class="loading-message" id="loadingMsg">
-        <p>⏳ Loading all ${slideFiles.length} slides...</p>
-        <p>Please wait before printing to ensure all content loads properly.</p>
-    </div>
 
-    ${slideFiles.map((slideFile, index) => `
-    <div class="slide-container" id="slide-${index + 1}">
-        <div class="slide-number">Slide ${index + 1}/${slideFiles.length}</div>
-        <iframe 
-            class="slide-frame" 
-            src="/old/${slideFile}"
-            onload="slideLoaded(${index + 1}, ${slideFiles.length})"
-            title="Slide ${index + 1} - ${slideFile}"
-        ></iframe>
-    </div>
-    `).join('')}
-
-    <script>
-        let loadedSlides = 0;
-        const totalSlides = ${slideFiles.length};
-        
-        function slideLoaded(slideNum, total) {
-            loadedSlides++;
-            console.log(\`Loaded slide \${slideNum}/\${total}\`);
-            
-            if (loadedSlides >= total) {
-                setTimeout(() => {
-                    document.getElementById('loadingMsg').style.display = 'none';
-                    console.log('All slides loaded! Ready to print.');
-                }, 1000);
-            }
-        }
-        
-        // Auto-hide loading message after 30 seconds regardless
-        setTimeout(() => {
-            document.getElementById('loadingMsg').style.display = 'none';
-        }, 30000);
-        
-        // Add print shortcut
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && e.key === 'p') {
-                e.preventDefault();
-                window.print();
-            }
+        // Launch Puppeteer
+        const browser = await puppeteer.launch({
+            args: chromium.args,
+            defaultViewport: chromium.defaultViewport,
+            executablePath: await chromium.executablePath,
+            headless: chromium.headless,
+            ignoreHTTPSErrors: true,
         });
-        
-        console.log('PDF page loaded. Total slides: ${slideFiles.length}');
-    </script>
-</body>
-</html>`;
 
+        const page = await browser.newPage();
+        
+        // Set viewport to desktop resolution
+        await page.setViewport({
+            width: 1920,
+            height: 1080,
+            deviceScaleFactor: 1
+        });
+
+        const screenshotPaths = [];
+        const baseUrl = `http://localhost:${PORT}`;
+
+        // Take screenshots of each slide
+        for (let i = 0; i < slideFiles.length; i++) {
+            const slideFile = slideFiles[i];
+            const slideUrl = `${baseUrl}/old/${slideFile}`;
+            
+            console.log(`Capturing slide ${i + 1}/${slideFiles.length}: ${slideFile}`);
+            
+            try {
+                await page.goto(slideUrl, { 
+                    waitUntil: ['networkidle0', 'domcontentloaded'],
+                    timeout: 30000 
+                });
+                
+                // Wait a bit more for fonts and images to load
+                await page.waitForTimeout(2000);
+                
+                const screenshotPath = path.join(screenshotsDir, `slide_${i + 1}.png`);
+                
+                await page.screenshot({
+                    path: screenshotPath,
+                    type: 'png',
+                    width: 1920,
+                    height: 1080,
+                    clip: {
+                        x: 0,
+                        y: 0,
+                        width: 1920,
+                        height: 1080
+                    }
+                });
+                
+                screenshotPaths.push(screenshotPath);
+                
+            } catch (err) {
+                console.error(`Error capturing slide ${slideFile}:`, err);
+                // Continue with next slide
+            }
+        }
+
+        await browser.close();
+
+        // Create PDF from screenshots
+        console.log('Creating PDF from screenshots...');
+        const pdfDoc = await PDFDocument.create();
+
+        for (const screenshotPath of screenshotPaths) {
+            try {
+                // Optimize image with Sharp
+                const optimizedImageBuffer = await sharp(screenshotPath)
+                    .png({ quality: 90, compressionLevel: 6 })
+                    .toBuffer();
+
+                const pngImage = await pdfDoc.embedPng(optimizedImageBuffer);
+                const page = pdfDoc.addPage([1920, 1080]);
+                
+                page.drawImage(pngImage, {
+                    x: 0,
+                    y: 0,
+                    width: 1920,
+                    height: 1080
+                });
+
+            } catch (err) {
+                console.error(`Error adding screenshot to PDF:`, err);
+            }
+        }
+
+        // Generate PDF buffer
+        const pdfBytes = await pdfDoc.save();
+
+        // Clean up screenshot files
+        for (const screenshotPath of screenshotPaths) {
+            try {
+                await fs.unlink(screenshotPath);
+            } catch (err) {
+                console.warn(`Could not delete screenshot: ${screenshotPath}`);
+            }
+        }
+
+        // Send PDF response
         res.set({
-            'Content-Type': 'text/html',
+            'Content-Type': 'application/pdf',
+            'Content-Disposition': 'attachment; filename="AI_Green_Fund_Presentation.pdf"',
+            'Content-Length': pdfBytes.length,
             'Cache-Control': 'no-cache'
         });
         
-        res.send(pdfHtml);
+        res.send(Buffer.from(pdfBytes));
+        console.log(`PDF generated successfully with ${slideFiles.length} slides`);
 
     } catch (error) {
-        console.error('Error creating PDF page:', error);
+        console.error('Error generating PDF:', error);
         res.status(500).json({ 
-            error: 'Failed to create PDF page', 
+            error: 'Failed to generate PDF', 
             details: error.message 
         });
     }

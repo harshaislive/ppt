@@ -265,7 +265,7 @@
 
         <div class="loading" id="loading">
             <div class="spinner"></div>
-            <div class="loading-text">Generating PDF... This may take a moment.</div>
+            <div class="loading-text">Taking screenshots and generating PDF... This may take 30-60 seconds.</div>
         </div>
 
         <div class="error" id="error"></div>
@@ -308,11 +308,17 @@
                 });
                 
                 if (!response.ok) {
-                    throw new Error(`Server error: ${response.status}`);
+                    const errorText = await response.text();
+                    throw new Error(`Server error: ${response.status} - ${errorText}`);
                 }
                 
                 // Get the PDF blob
                 const blob = await response.blob();
+                
+                // Verify it's actually a PDF
+                if (blob.type !== 'application/pdf' && !blob.type.includes('pdf')) {
+                    throw new Error('Response is not a PDF file');
+                }
                 
                 // Create download link
                 const url = window.URL.createObjectURL(blob);
